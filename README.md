@@ -1,0 +1,2 @@
+# Spotter
+Hevy companion app
