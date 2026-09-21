@@ -125,7 +125,9 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .bro{display:block;width:48px;height:auto;aspect-ratio:263/218;fill:currentColor;flex:none}
 .bro .fl{opacity:.55}
 .win .bro{width:74px} .win .bro .fl{opacity:1} .win .bro .fh{display:none}
-.dock .dnext .bro.bf,.btn .bro.bf{width:32px} .dock .dnext .bro .fl,.btn .bro .fl{opacity:1} .dock .dnext .bro .fh,.btn .bro .fh{display:none}
+.dock .dnext{gap:16px}
+.dock .dnext .bro.bf{width:46px}
+.btn .bro.bf{width:32px} .dock .dnext .bro .fl,.btn .bro .fl{opacity:1} .dock .dnext .bro .fh,.btn .bro .fh{display:none}
 .btn .bro.bf{margin-right:2px}
 .status .bro.bf{display:inline-block;width:28px;vertical-align:-5px;margin-right:8px;color:var(--silver-ink)}
 .win b{display:block;font-size:15px;font-weight:600;opacity:.8}
@@ -227,9 +229,10 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .exs button.on .dot{background:var(--accent)}
 .exc{display:grid;gap:14px;align-content:center}
 .duo>span{display:block;font-size:12.5px;font-weight:650;color:var(--ink3);margin:0 0 6px 14px;letter-spacing:.02em}
-.duo-t{display:grid;grid-template-columns:1fr 1fr;padding:4px;border-radius:999px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
+.duo-t{display:grid;grid-template-columns:repeat(var(--k,2),1fr);padding:4px;border-radius:999px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
 .duo-t button{height:44px;border-radius:999px;font-size:15.5px;font-weight:600;color:var(--ink2);transition:background-color .15s,color .15s,transform .12s ease}
 .duo-t button:active{transform:scale(.95)}
+.duo-t[style*="--k:3"] button{font-size:13.5px;letter-spacing:-.01em}
 .duo-t button.on{background:var(--accent);color:var(--on-accent);font-weight:750}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .chip{min-height:40px;padding:0 14px;border-radius:var(--r1);font-size:15px;font-weight:550;border:1px solid var(--line);color:var(--ink);transition:transform .12s ease,background-color .12s,color .12s}
@@ -544,6 +547,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 [data-skin="doodle"] .sites{gap:6px} [data-skin="doodle"] .chip.site{padding:0 9px}
 [data-skin="doodle"] .bro .gg{filter:url(#wob)}
 [data-skin="doodle"] .muso{filter:url(#wob)}
+[data-skin="doodle"] .duo-t[style*="--k:3"] button{font-size:16px}
 
 </style>
 </head>
@@ -555,7 +559,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 <div class="toast" id="toast"></div>
 <script>
 'use strict';
-const VERSION = '4.3';
+const VERSION = '4.3.1';
 const APP = 'Brorilla';
 const API = 'https://api.hevyapp.com';
 const $ = (s, r = document) => r.querySelector(s);
@@ -660,7 +664,7 @@ const S = {
   view: 'home', key: LS.get('key', ''), routines: LS.get('routines', null), loading: false, err: '',
   cur: LS.get('current', null), archive: LS.get('archive', []), page: 0, scope: {}, openNote: {}, archId: null, anchor: null
 };
-const CHIPS = [['Tecnica', 'Pulita', 'Sporca'], ['Velocità', 'Lenta', 'Veloce']];
+const CHIPS = [['Tecnica', 'Pulita', 'Sporca'], ['Velocità', 'Lenta', 'Normale', 'Veloce']];
 const SITES = ['spalla', 'gomito', 'ginocchio', 'altro'];
 const GYMS = ['Castellanza', 'Cantù', 'Casa', 'Trasferta'];
 const FEEL = ['scarico', 'normale', 'in forma'];
@@ -932,7 +936,7 @@ function vMy(e, i, a) {
   const cur = e.my.chips[sc] || [], valve = a.p.role === 'valvola';
   let h = '<div class="blk"><div class="hd"><h3>Esecuzione</h3>' + (hasNote(e) ? '<span class="saved">salvato</span>' : '<span>si salva da sola</span>') + '</div>';
   h += '<div class="exe"><div class="exs">' + a.work.map((s, k) => '<button class="' + (sc === 's' + k ? 'on' : '') + '" data-act="scope" data-i="' + i + '" data-s="s' + k + '"><b>Set ' + (k + 1) + '</b>' + (a.mixed ? '<small>' + ((s.weight_kg || 0) === a.maxW ? 'top' : 'back-down') + '</small>' : '') + ((e.my.chips['s' + k] || []).length ? '<span class="dot"></span>' : '') + '</button>').join('') + '</div>';
-  h += '<div class="exc">' + CHIPS.map(g => '<div class="duo"><span>' + g[0] + '</span><div class="duo-t" role="group" aria-label="' + g[0] + '">' + g.slice(1).map(c => '<button class="' + (cur.includes(c) ? 'on' : '') + '" data-act="chip" data-i="' + i + '" data-c="' + esc(c) + '" aria-pressed="' + cur.includes(c) + '">' + esc(c) + '</button>').join('') + '</div></div>').join('') + '</div></div>';
+  h += '<div class="exc">' + CHIPS.map(g => '<div class="duo"><span>' + g[0] + '</span><div class="duo-t" style="--k:' + (g.length - 1) + '" role="group" aria-label="' + g[0] + '">' + g.slice(1).map(c => '<button class="' + (cur.includes(c) ? 'on' : '') + '" data-act="chip" data-i="' + i + '" data-c="' + esc(c) + '" aria-pressed="' + cur.includes(c) + '">' + esc(c) + '</button>').join('') + '</div></div>').join('') + '</div></div>';
   const sites = e.my.sites || [];
   h += '<div class="pain"><div class="ph"><span class="pl">Dolore durante' + (valve ? '<em>sulle valvole si segna sempre, anche zero</em>' : '') + '</span>' + face(e.my.pain) + '<b class="pv num" id="pv-' + i + '">' + (e.my.pain == null ? '-' : e.my.pain) + '<small>/10</small></b></div>' + slider('pain', i, e.my.pain) +
     '<div class="sites" role="group" aria-label="Sede del dolore">' + SITES.map(x => '<button class="chip site' + (sites.includes(x) ? ' on' : '') + '" data-act="site" data-i="' + i + '" data-c="' + x + '">' + x + '</button>').join('') + '</div>' +
