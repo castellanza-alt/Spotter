@@ -31,6 +31,8 @@ if(t==='auto')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light
   --bg:#EEF0E6; --bg2:#E2E5D6; --bg3:#D3D8C4; --panel:rgba(17,18,14,.05); --glow1:rgba(201,230,76,.34); --glow2:rgba(120,140,70,.16); --grain:.05; --ink:#11120E; --ink2:rgba(17,18,14,.70); --ink3:rgba(17,18,14,.46); --line:rgba(17,18,14,.16);
   --accent:#C9E64C; --on-accent:#11120E; --accent-ink:#4C5E00; --warn:#C23C22; --on-warn:#FFFDF8;
   --c:var(--accent); --ct:var(--accent-ink);
+  /* intensità: unica eccezione al colore unico, usata solo su scala RPE e cursore del dolore */
+  --heat:linear-gradient(90deg,#35B36A 0%,#9BD24C 26%,#F2D13B 52%,#F28A35 76%,#E0432D 100%);
   --c-grande:var(--accent); --c-costruzione:var(--accent); --c-finisher:var(--accent); --c-valvola:var(--accent); --c-attivazione:var(--accent); --c-libero:var(--accent);
   --t-grande:var(--accent-ink); --t-costruzione:var(--accent-ink); --t-finisher:var(--accent-ink); --t-valvola:var(--accent-ink); --t-attivazione:var(--accent-ink); --t-libero:var(--accent-ink);
 }
@@ -100,6 +102,15 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .rrow .rkg{text-align:right;font-size:30px;font-weight:750;font-stretch:72%;line-height:1}
 .rrow .rkg small{display:block;font-size:12.5px;font-weight:500;font-stretch:100%;color:var(--ink3);margin-top:4px}
 .empty{padding:34px 0;color:var(--ink2);font-size:15px}
+.empty.big{text-align:left} .empty.big .gor{width:72px;height:72px;color:var(--ink);opacity:.9} .empty.big p{margin:14px 0 0;max-width:34ch}
+.gor{display:block;width:26px;height:26px;fill:currentColor;flex:none}
+.gor.inl{display:inline-block;width:.78em;height:.78em;margin-left:.3em;vertical-align:-.04em;color:var(--accent-ink)}
+.foot.motto{display:flex;align-items:center;gap:10px;color:var(--ink2);margin-top:30px}
+.foot.motto span{font-size:17px;font-weight:800;font-stretch:66%;text-transform:uppercase;letter-spacing:.02em}
+.win{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:var(--accent);color:var(--on-accent);border-radius:var(--r2);padding:16px 18px;margin-bottom:14px}
+.win .gor{width:58px;height:58px}
+.win b{display:block;font-size:15px;font-weight:600;opacity:.8}
+.win span span{display:block;font-size:27px;line-height:1;font-weight:850;font-stretch:62%;text-transform:uppercase;margin-top:3px}
 .foot{font-size:13px;color:var(--ink3);margin-top:26px}
 
 /* ---------- seduta ---------- */
@@ -131,10 +142,12 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .rpe-top b{font-size:84px;line-height:.8;font-weight:800;font-stretch:66%;letter-spacing:-.02em;white-space:nowrap}
 .rpe-top span{font-size:14.5px;color:var(--ink2);line-height:1.25;padding-bottom:2px;max-width:16ch}
 .rpe-top span strong{display:block;color:var(--ink);font-weight:700;font-size:15px}
-.scale{position:relative;height:52px;margin-top:18px}
-.scale .trk{position:absolute;left:0;right:0;top:0;height:20px;background:var(--bg3);border-radius:3px}
-.scale .zone{position:absolute;top:0;height:20px;background:var(--accent);border-radius:3px;transform-origin:left center}
-.scale .zone.cap{background:repeating-linear-gradient(-45deg,var(--accent) 0 5px,transparent 5px 9px);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.scale{position:relative;height:52px;margin-top:26px}
+.scale .trk{position:absolute;left:0;right:0;top:0;height:20px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.scale .trk::after{content:"";position:absolute;inset:0;background:var(--heat);opacity:.2}
+.scale .zone{position:absolute;left:0;top:0;height:20px;background-image:var(--heat);background-repeat:no-repeat;border-radius:3px;transform-origin:left center}
+.scale .zlo{position:absolute;top:-11px;height:5px;background:var(--ink);border-radius:2px}
+
 .scale .stop{position:absolute;top:-6px;width:4px;height:32px;margin-left:-2px;background:var(--ink);border-radius:2px}
 .scale .tick{font-style:normal;position:absolute;top:26px;width:1px;height:6px;background:var(--ink3)}
 .scale .tick.maj{height:9px;background:var(--ink2)}
@@ -189,9 +202,20 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:650}
 .chip.body{border-color:color-mix(in srgb,var(--warn) 55%,transparent)}
 .chip.body.on{background:var(--warn);color:var(--on-warn);border-color:var(--warn)}
-.pain{margin:6px 0 4px;padding:14px 0 0}
-.pain .ph{display:flex;justify-content:space-between;align-items:baseline;gap:4px 10px;flex-wrap:wrap;margin-bottom:10px;font-size:15px;font-weight:700}
-.pain .ph span{color:var(--ink2);font-weight:450;font-size:13.5px}
+.pain{margin:10px 0 4px;padding:16px 0 0;border-top:1px solid var(--line)}
+.pain .ph{display:flex;align-items:flex-end;gap:10px;margin-bottom:6px}
+.pain .pl{flex:1;font-size:15px;font-weight:700}
+.pain .pl em{display:block;font-style:normal;font-weight:450;font-size:13.5px;color:var(--ink2);margin-top:2px}
+.pain .pv{font-size:44px;line-height:.85;font-weight:800;font-stretch:66%}
+.pain .pv small{font-size:15px;font-weight:500;font-stretch:100%;color:var(--ink3);margin-left:2px}
+.sl{position:relative;height:48px;margin:6px 18px 0;touch-action:none;cursor:pointer}
+.sl-trk,.sl-fill{position:absolute;left:-18px;top:18px;height:12px;border-radius:6px;background-image:var(--heat);background-repeat:no-repeat}
+.sl-trk{right:-18px;opacity:.28}
+.sl.unset .sl-fill{opacity:0}
+.sl-th{position:absolute;top:5px;width:38px;height:38px;margin-left:-19px;border-radius:50%;background:var(--ink);border:5px solid var(--bg2);box-shadow:0 4px 14px -4px rgba(0,0,0,.55);transition:transform .12s ease}
+.sl:active .sl-th{transform:scale(1.12)}
+.sl.unset .sl-th{background:var(--bg3);border-color:var(--ink3)}
+.sl-sc{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink3);font-weight:550;margin:0 2px}
 .dots{display:flex;gap:4px}
 .dots button{flex:1;height:44px;border-radius:var(--r1);font-size:15px;font-weight:650;border:1px solid var(--line);color:var(--ink2);transition:transform .12s}
 .dots button:active{transform:scale(.9)}
@@ -205,6 +229,13 @@ input.in{width:100%;min-height:52px;border-radius:var(--r2);padding:0 14px;backg
 .note-full{font-size:15px;line-height:1.5;color:var(--ink2);user-select:text;-webkit-user-select:text;max-width:60ch}
 .note-full p{margin:0 0 10px}
 .note-full.clamp{max-height:9.2em;overflow:hidden;-webkit-mask-image:linear-gradient(#000 45%,transparent)}
+.recs{display:grid;gap:16px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.recs:empty{display:none}
+.rec .k{display:block;font-size:13.5px;color:var(--ink2);font-weight:550;margin-bottom:5px}
+.rec b{display:block;font-size:30px;line-height:.95;font-weight:780;font-stretch:68%;color:var(--ink)}
+.rec b small{font-size:13.5px;font-weight:500;font-stretch:100%;color:var(--ink2)}
+.rec b i{display:inline-block;width:14px}
+.rec .sub{display:block;font-size:13.5px;color:var(--ink2);margin-top:5px;line-height:1.35}
 .hrow{display:grid;grid-template-columns:58px 1fr;gap:10px;padding:7px 0;font-size:15px;align-items:baseline}
 .hrow .d{color:var(--ink3);font-size:13.5px}
 .hrow .s{display:flex;flex-wrap:wrap;gap:4px 14px;font-weight:600}
@@ -262,6 +293,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 /* ---------- movimento: solo gerarchia e risposta al tocco ---------- */
 @media (prefers-reduced-motion:no-preference){
   .enter>*,.page.in .hero>*{animation:rise .55s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0)*55ms)}
+  .win .gor{animation:stamp .6s .1s cubic-bezier(.3,1.5,.5,1) both}
   .page.in .zone{animation:grow .8s .15s cubic-bezier(.16,1,.3,1) both}
   .page.in .stop{animation:drop .4s .7s cubic-bezier(.3,1.5,.5,1) both}
   .page.in .rpe-top b{animation:rise .6s .05s cubic-bezier(.16,1,.3,1) both}
@@ -269,6 +301,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 }
 @keyframes rise{from{opacity:0;transform:translateY(14px)}}
 @keyframes grow{from{transform:scaleX(0)}}
+@keyframes stamp{from{transform:scale(1.6) rotate(-12deg);opacity:0}}
 @keyframes drop{from{opacity:0;transform:translateY(-10px)}}
 @keyframes pl{0%{box-shadow:0 0 0 0 rgba(17,18,14,.5)}100%{box-shadow:0 0 0 12px rgba(17,18,14,0)}}
 
@@ -356,8 +389,10 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 [data-skin="doodle"] .rpe-top span strong{font-family:var(--font-d)}
 [data-skin="doodle"] .scale{margin-top:52px;height:56px}
 [data-skin="doodle"] .scale .trk{height:0;top:11px;background:none;border-top:2.6px solid var(--ink);border-radius:50%}
-[data-skin="doodle"] .scale .zone{height:24px;top:-1px;background:var(--c);opacity:.78;border-radius:var(--sk2);transform:rotate(-.6deg)}
-[data-skin="doodle"] .scale .zone.cap{opacity:.5;background:var(--c);box-shadow:none}
+[data-skin="doodle"] .scale .zone{height:24px;top:-1px;opacity:.8;border-radius:var(--sk2);transform:rotate(-.6deg)}
+[data-skin="doodle"] .scale .trk::after{display:none}
+[data-skin="doodle"] .scale .zlo{top:-13px;height:0;background:none;border-top:3px solid var(--ct);border-radius:50%;transform:rotate(-.8deg)}
+
 [data-skin="doodle"] .scale .stop{top:-8px;height:38px;width:4px;background:var(--ink);transform:rotate(5deg)}
 [data-skin="doodle"] .scale .tick{background:var(--ink);top:30px;width:2px}
 [data-skin="doodle"] .scale .tick u{font-size:16px;color:var(--ink2);font-weight:400}
@@ -405,9 +440,25 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 [data-skin="doodle"] .chip.on::before{content:"✓ ";font-family:var(--font-d)}
 [data-skin="doodle"] .chip.body.on{background:var(--warn);color:var(--on-warn)}
 [data-skin="doodle"] .pain{border:2px solid var(--warn);border-radius:var(--sk1);background:color-mix(in srgb,var(--warn) 9%,transparent);padding:14px}
-[data-skin="doodle"] .pain .ph{font-family:var(--font-d);font-weight:400;font-size:16px;align-items:center}
-[data-skin="doodle"] .pain .ph span{font-family:var(--font);font-size:15.5px}
-[data-skin="doodle"] .face{display:block;width:40px;height:40px;flex:none;margin:-6px 0 -6px auto}
+[data-skin="doodle"] .pain .ph{align-items:center}
+[data-skin="doodle"] .pain .pl{font-family:var(--font-d);font-weight:400;font-size:16px}
+[data-skin="doodle"] .pain .pl em{font-family:var(--font);font-size:15.5px}
+[data-skin="doodle"] .pain .pv{font-family:var(--font-d);font-weight:400;font-size:34px}
+[data-skin="doodle"] .sl-trk,[data-skin="doodle"] .sl-fill{border:2px solid var(--ink);height:14px;border-radius:var(--sk3)}
+[data-skin="doodle"] .sl-trk{opacity:.4}
+[data-skin="doodle"] .sl-th{border:3px solid var(--ink);background:var(--bg2);border-radius:58% 42% 52% 48%/46% 54% 44% 56%;box-shadow:2px 3px 0 var(--hard)}
+[data-skin="doodle"] .sl-sc{font-size:15px}
+[data-skin="doodle"] .recs{border-top:2px dashed var(--line)}
+[data-skin="doodle"] .rec .k,[data-skin="doodle"] .rec .sub{font-size:15.5px;font-weight:400}
+[data-skin="doodle"] .rec b{font-family:var(--font-d);font-weight:400;font-size:24px}
+[data-skin="doodle"] .rec b small{font-family:var(--font);font-size:15px}
+[data-skin="doodle"] .gor .gg{filter:url(#wob)}
+[data-skin="doodle"] .win{border:2px solid var(--ink);border-radius:var(--sk3);box-shadow:3px 4px 0 var(--hard)}
+[data-skin="doodle"] .win span span,[data-skin="doodle"] .foot.motto span{font-family:var(--font-d);font-weight:400;text-transform:none}
+[data-skin="doodle"] .win span span{font-size:22px}
+[data-skin="doodle"] .win b{font-size:16px}
+
+[data-skin="doodle"] .face{display:block;width:40px;height:40px;flex:none}
 [data-skin="doodle"] .face *{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linecap:round}
 [data-skin="doodle"] .face .tear{fill:var(--c-attivazione);stroke-width:1.6}
 [data-skin="doodle"] .dots{gap:3px}
@@ -462,7 +513,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 <div class="toast" id="toast"></div>
 <script>
 'use strict';
-const VERSION = '3.1';
+const VERSION = '3.2';
 const API = 'https://api.hevyapp.com';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -496,7 +547,7 @@ const ROLES = {
 };
 const num = s => parseFloat(String(s).replace(',', '.'));
 function parseNote(raw) {
-  const out = { role: 'libero', lo: null, hi: null, fromPolicy: false, qual: '', tagline: '', badges: [], lines: [] };
+  const out = { role: 'libero', lo: null, hi: null, fromPolicy: false, qual: '', tagline: '', badges: [], lines: [], meso: null, rp: null };
   const text = String(raw || '').replace(/\r/g, '').trim();
   if (!text) return out;
   const all = text.split('\n').map(s => s.trim()).filter(Boolean);
@@ -521,6 +572,10 @@ function parseNote(raw) {
   out.lines = body.map(l => {
     if (/^⚠/.test(l)) return { type: 'warn', text: l.replace(/^⚠️?\s*/, '') };
     if (/^⬆/.test(l)) return { type: 'up', text: l.replace(/^⬆️?\s*/, '') };
+    const mm = l.match(/^(?:🎯\s*)?MESO\b(.*)$/i);
+    if (mm) { const a = mm[1].match(/minimo\s*:?\s*(\d+(?:[.,]\d+)?)/i), b = mm[1].match(/target\s*:?\s*(\d+(?:[.,]\d+)?)/i); out.meso = { min: a ? num(a[1]) : null, target: b ? num(b[1]) : null, text: mm[1].replace(/^[\s·:,-]+/, '') }; return { type: 'meso', text: l }; }
+    const rr = l.match(/^(?:🏅\s*)?RP\b[\s·:,-]*(.*)$/);
+    if (rr && rr[1]) { out.rp = rr[1]; return { type: 'rp', text: l }; }
     if (/bersaglio/i.test(l)) return { type: 'target', text: l };
     return { type: 'text', text: l };
   });
@@ -538,13 +593,13 @@ function analyze(ex) {
   const tarat = p.badges.includes('TARATURA'), deload = p.badges.includes('DELOAD');
   let trig;
   const cap = p.hi != null ? fmt(p.hi) : null;
-  if (p.role === 'valvola') trig = '<b>Valvola.</b> Misura, non allena: carico e ripetizioni fissi, si legge su tutte le serie' + (cap ? ' entro RPE ' + cap : '') + '. Dolore da 0 a 10, durante e a 2 ore.';
+  if (p.role === 'valvola') trig = '<b>Valvola.</b> Misura, non allena: carico e ripetizioni fissi, si legge su tutti i set' + (cap ? ' entro RPE ' + cap : '') + '. Dolore da 0 a 10, durante e a 2 ore.';
   else if (p.role === 'attivazione') trig = '<b>Attivazione.</b> Resta leggera: prepara, non affatica.';
   else if (deload) trig = '<b>Deload.</b> Nessuna progressione oggi: dice solo se sei pronto.';
   else if (tarat) trig = '<b>Taratura.</b> Oggi si fissano i numeri: segna gli RPE veri, nessun trigger.';
   else if (range && work.length) {
     const n = tops.length;
-    trig = '<b>Trigger:</b> ' + range.hi + ' reps ' + (n === 1 ? 'sul top set' : 'su tutte e ' + n + ' le serie') + (maxW ? ' a ' + fmt(maxW) + ' kg' : '') + (cap ? ' entro RPE ' + cap : '') + ' → il carico sale di uno scatto.' + (mixed ? ' I back-down non contano.' : '');
+    trig = '<b>Trigger:</b> ' + range.hi + ' reps ' + (n === 1 ? 'sul top set' : 'su tutti e ' + n + ' i set') + (maxW ? ' a ' + fmt(maxW) + ' kg' : '') + (cap ? ' entro RPE ' + cap : '') + ' → il carico sale di uno scatto.' + (mixed ? ' I back-down non contano.' : '');
   } else trig = '';
   return { p, work, warm, maxW, mixed, tops, range, trig };
 }
@@ -553,7 +608,7 @@ function analyze(ex) {
 const DEMO = [{
   id: 'demo-1', title: 'Split A — Demo Full Body', updated_at: new Date().toISOString(), demo: true, exercises: [
     { index: 0, title: 'Face Pull (Cable)', exercise_template_id: 'D0', rest_seconds: 90, notes: '🔋 ATTIVAZIONE · RPE 7 — non spingere\n12,5 kg x 15. Pausa 1" in chiusura, gomiti alti.', sets: [{ type: 'normal', weight_kg: 12.5, reps: 15 }, { type: 'normal', weight_kg: 12.5, reps: 15 }] },
-    { index: 1, title: 'Squat (Barbell)', exercise_template_id: 'D1', rest_seconds: 210, notes: '🏆 GRANDE · RPE 8-9,5 sul top set\nBersaglio: 8 reps al top set -> si sale di 2,5 kg.\nSe escono 6 reps a RPE 9 e una serie valida: il range parte da 6.\n⚠️ Esempio di avviso: se il ginocchio parla, accorcia il ROM e segnalo negli appunti.', sets: [{ type: 'warmup', weight_kg: 40, reps: 8 }, { type: 'warmup', weight_kg: 70, reps: 4 }, { type: 'normal', weight_kg: 90, reps: 8, rep_range: { start: 6, end: 8 } }, { type: 'normal', weight_kg: 82.5, reps: 8, rep_range: { start: 6, end: 8 } }, { type: 'normal', weight_kg: 82.5, reps: 8, rep_range: { start: 6, end: 8 } }] },
+    { index: 1, title: 'Squat (Barbell)', exercise_template_id: 'D1', rest_seconds: 210, notes: '🏆 GRANDE · RPE 8-9,5 sul top set\nBersaglio: 8 reps al top set -> si sale di 2,5 kg.\n🎯 MESO · minimo 90 · target 95\nSe escono 6 reps a RPE 9 e una serie valida: il range parte da 6.\n⚠️ Esempio di avviso: se il ginocchio parla, accorcia il ROM e segnalo negli appunti.', sets: [{ type: 'warmup', weight_kg: 40, reps: 8 }, { type: 'warmup', weight_kg: 70, reps: 4 }, { type: 'normal', weight_kg: 90, reps: 8, rep_range: { start: 6, end: 8 } }, { type: 'normal', weight_kg: 82.5, reps: 8, rep_range: { start: 6, end: 8 } }, { type: 'normal', weight_kg: 82.5, reps: 8, rep_range: { start: 6, end: 8 } }] },
     { index: 2, title: 'Seated Cable Row', exercise_template_id: 'D2', rest_seconds: 150, notes: '🪜 COSTRUZIONE · cap RPE 8 (range 8-10)\n⬆️ 60 -> 65: l\'ultima volta hai chiuso 10/10/10 entro il cap.\nScapole prima delle braccia, ROM lento.', sets: [{ type: 'warmup', weight_kg: 40, reps: 8 }, { type: 'normal', weight_kg: 65, reps: 10, rep_range: { start: 8, end: 10 } }, { type: 'normal', weight_kg: 60, reps: 10, rep_range: { start: 8, end: 10 } }, { type: 'normal', weight_kg: 60, reps: 10, rep_range: { start: 8, end: 10 } }] },
     { index: 3, title: 'Cable Fly (High)', exercise_template_id: 'D3', rest_seconds: 105, notes: '🚦 VALVOLA · RPE 7,5 e non si sposta mai — LETTURA 2 DI 3\n10 kg x 12 reps FISSE. Il carico non sale.\nDolore 0-10 durante e a 2 ore, anche se e zero.', sets: [{ type: 'normal', weight_kg: 10, reps: 12 }, { type: 'normal', weight_kg: 10, reps: 12 }] },
     { index: 4, title: 'Triceps Rope Pushdown', exercise_template_id: 'D4', rest_seconds: 120, notes: '🔥 FINISHER · RPE 9-9,5 sull\'ultima serie — qui si spinge\nGomiti incollati ai fianchi. Il margine non e di carico, e di sforzo.', sets: [{ type: 'normal', weight_kg: 20, reps: 12, rep_range: { start: 10, end: 12 } }, { type: 'normal', weight_kg: 17.5, reps: 12, rep_range: { start: 10, end: 12 } }, { type: 'normal', weight_kg: 17.5, reps: 12, rep_range: { start: 10, end: 12 } }] }
@@ -574,9 +629,8 @@ const S = {
   cur: LS.get('current', null), archive: LS.get('archive', []), page: 0, scope: {}, openNote: {}, archId: null, anchor: null
 };
 const CHIPS = [
-  { g: 'Esecuzione', body: false, items: ['ROM pieno', 'rep sporca', 'ultima lenta', 'ne avevo ancora', 'al limite', 'carico cambiato'] },
-  { g: 'Contesto', body: false, items: ['recupero corto', 'recupero lungo', 'attrezzo diverso', 'attrezzo occupato'] },
-  { g: 'Corpo', body: true, items: ['spalla', 'gomito', 'altro fastidio'] }
+  { g: 'Esecuzione', body: false, items: ['pulito', 'rep sporca', 'ultima lenta', 'ne avevo ancora', 'al limite'] },
+  { g: 'Corpo', body: true, items: ['spalla', 'gomito'] }
 ];
 const BODY = new Set(CHIPS.find(c => c.body).items);
 const GYMS = ['Castellanza', 'Cantù', 'Casa', 'Trasferta'];
@@ -618,21 +672,33 @@ async function loadRoutines(force) {
   } catch (e) { S.err = e.message === 'Failed to fetch' || /load failed/i.test(e.message) ? 'Senza rete: mostro l\'ultima copia salvata' : e.message; if (!S.routines || S.routines.demo) S.routines = LS.get('routines', null); }
   S.loading = false; if (S.view === 'home') render();
 }
+const e1rm = (w, r) => w * (1 + r / 30);
+function summarize(list) {
+  /* list: [{id,start,sets:[{w,r,rpe}]}] dal più recente. Record = carico più alto in un set di lavoro; a parità, più reps. */
+  let pr = null, est = null, reps = null;
+  list.forEach(ses => ses.sets.forEach(x => {
+    if (x.r == null || x.r <= 0) return;
+    if (x.w > 0) {
+      if (!pr || x.w > pr.w || (x.w === pr.w && x.r > pr.r)) pr = { w: x.w, r: x.r, at: ses.start };
+      if (x.r <= 12) { const v = e1rm(x.w, x.r); if (!est || v > est.v) est = { v, w: x.w, r: x.r, at: ses.start }; }
+    } else if (!reps || x.r > reps.r) reps = { r: x.r, at: ses.start };
+  }));
+  return { last: list.slice(0, 3), pr, est, reps, n: list.length };
+}
 async function getHistory(ex) {
-  if (!S.key || String(ex.tid).startsWith('D')) return demoHistory({ notes: ex.notes, sets: ex.sets });
-  const cache = LS.get('hist', {}), c = cache[ex.tid];
-  if (c && Date.now() - c.at < 6 * 36e5) return c.s;
-  const from = new Date(Date.now() - 90 * 864e5).toISOString();
-  const j = await api('/v1/exercise_history/' + encodeURIComponent(ex.tid) + '?start_date=' + encodeURIComponent(from));
+  if (!S.key || String(ex.tid).startsWith('D')) return summarize(demoHistory({ notes: ex.notes, sets: ex.sets }));
+  const cache = LS.get('hist2', {}), c = cache[ex.tid];
+  if (c && Date.now() - c.at < 6 * 36e5) return c.d;
+  const j = await api('/v1/exercise_history/' + encodeURIComponent(ex.tid));
   const by = new Map();
   (j.exercise_history || []).forEach(h => {
     if (h.set_type === 'warmup') return;
     if (!by.has(h.workout_id)) by.set(h.workout_id, { id: h.workout_id, start: h.workout_start_time, sets: [] });
     by.get(h.workout_id).sets.push({ w: h.weight_kg, r: h.reps, rpe: h.rpe });
   });
-  const s = [...by.values()].sort((a, b) => new Date(b.start) - new Date(a.start)).slice(0, 3);
-  cache[ex.tid] = { at: Date.now(), s }; LS.set('hist', cache);
-  return s;
+  const d = summarize([...by.values()].sort((a, b) => new Date(b.start) - new Date(a.start)));
+  cache[ex.tid] = { at: Date.now(), d }; LS.set('hist2', cache); LS.del('hist');
+  return d;
 }
 async function anchorHevy() {
   const c = S.cur; if (!c) return;
@@ -662,7 +728,7 @@ function startSession(r) {
   S.page = 0; S.scope = {}; S.openNote = {}; saveCur(); go('session');
 }
 const hasNote = e => !!(e.my.text.trim() || e.my.pain != null || Object.values(e.my.chips).some(a => a && a.length));
-const needsPain = (e, a) => a.p.role === 'valvola' || e.my.pain != null || e.my.showPain || Object.values(e.my.chips).some(arr => (arr || []).some(c => BODY.has(c)));
+const needsPain_unused = (e, a) => a.p.role === 'valvola' || e.my.pain != null || e.my.showPain || Object.values(e.my.chips).some(arr => (arr || []).some(c => BODY.has(c)));
 
 function buildExport(c) {
   const L = [];
@@ -709,7 +775,7 @@ function icsReminder(c) {
   const a = document.createElement('a'); a.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics); a.download = 'spotter-dolore-2h.ics'; document.body.appendChild(a); a.click(); a.remove();
 }
 function archiveCurrent() {
-  if (!S.cur) return; S.cur.closedAt = new Date().toISOString(); S.archive.unshift(S.cur); saveArch(); S.cur = null; saveCur(); S.anchor = null; setRole(null); go('home'); toast('Seduta archiviata');
+  if (!S.cur) return; S.cur.closedAt = new Date().toISOString(); S.archive.unshift(S.cur); saveArch(); S.cur = null; saveCur(); S.anchor = null; setRole(null); S.justClosed = true; go('home');
 }
 function pendingPain() {
   const out = [], now = Date.now();
@@ -721,6 +787,8 @@ function pendingPain() {
 /* ---------- views ---------- */
 /* Icone: Phosphor Icons (MIT), https://phosphoricons.com */
 const PH = {"archive": "<path d=\"M224,44H32A20,20,0,0,0,12,64V88a20,20,0,0,0,16,19.6V192a20,20,0,0,0,20,20H208a20,20,0,0,0,20-20V107.6A20,20,0,0,0,244,88V64A20,20,0,0,0,224,44ZM36,68H220V84H36ZM52,188V108H204v80Zm112-52a12,12,0,0,1-12,12H104a12,12,0,0,1,0-24h48A12,12,0,0,1,164,136Z\"/>", "arrow-right": "<path d=\"M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z\"/>", "arrows-clockwise": "<path d=\"M228,48V96a12,12,0,0,1-12,12H168a12,12,0,0,1,0-24h19l-7.8-7.8a75.55,75.55,0,0,0-53.32-22.26h-.43A75.49,75.49,0,0,0,72.39,75.57,12,12,0,1,1,55.61,58.41a99.38,99.38,0,0,1,69.87-28.47H126A99.42,99.42,0,0,1,196.2,59.23L204,67V48a12,12,0,0,1,24,0ZM183.61,180.43a75.49,75.49,0,0,1-53.09,21.63h-.43A75.55,75.55,0,0,1,76.77,179.8L69,172H88a12,12,0,0,0,0-24H40a12,12,0,0,0-12,12v48a12,12,0,0,0,24,0V189l7.8,7.8A99.42,99.42,0,0,0,130,226.06h.56a99.38,99.38,0,0,0,69.87-28.47,12,12,0,0,0-16.78-17.16Z\"/>", "barbell": "<path d=\"M244,116V88a20,20,0,0,0-20-20H208V64a20,20,0,0,0-20-20H164a20,20,0,0,0-20,20v52H112V64A20,20,0,0,0,92,44H68A20,20,0,0,0,48,64v4H32A20,20,0,0,0,12,88v28a12,12,0,0,0,0,24v28a20,20,0,0,0,20,20H48v4a20,20,0,0,0,20,20H92a20,20,0,0,0,20-20V140h32v52a20,20,0,0,0,20,20h24a20,20,0,0,0,20-20v-4h16a20,20,0,0,0,20-20V140a12,12,0,0,0,0-24ZM36,164V92H48v72Zm52,24H72V68H88Zm96,0H168V68h16Zm36-24H208V92h12Z\"/>", "bell-ringing": "<path d=\"M225.81,74.65A11.86,11.86,0,0,1,220.3,76a12,12,0,0,1-10.67-6.47,90.1,90.1,0,0,0-32-35.38,12,12,0,1,1,12.8-20.29,115.25,115.25,0,0,1,40.54,44.62A12,12,0,0,1,225.81,74.65ZM46.37,69.53a90.1,90.1,0,0,1,32-35.38A12,12,0,1,0,65.6,13.86,115.25,115.25,0,0,0,25.06,58.48a12,12,0,0,0,5.13,16.17A11.86,11.86,0,0,0,35.7,76,12,12,0,0,0,46.37,69.53Zm173.51,98.35A20,20,0,0,1,204,200H171.81a44,44,0,0,1-87.62,0H52a20,20,0,0,1-15.91-32.12c7.17-9.33,15.73-26.62,15.88-55.94A76,76,0,0,1,204,112C204.15,141.26,212.71,158.55,219.88,167.88ZM147.6,200H108.4a20,20,0,0,0,39.2,0Zm48.74-24c-8.16-13-16.19-33.57-16.34-63.94A52,52,0,1,0,76,112c-.15,30.42-8.18,51-16.34,64Z\"/>", "caret-left": "<path d=\"M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z\"/>", "caret-right": "<path d=\"M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z\"/>", "chat-text": "<path d=\"M216,44H40A20,20,0,0,0,20,64V224A19.82,19.82,0,0,0,31.56,242.1a20.14,20.14,0,0,0,8.49,1.9,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a11.93,11.93,0,0,0-7.84,2.92L44,215.23V68H212ZM84,108A12,12,0,0,1,96,96h64a12,12,0,1,1,0,24H96A12,12,0,0,1,84,108Zm0,40a12,12,0,0,1,12-12h64a12,12,0,0,1,0,24H96A12,12,0,0,1,84,148Z\"/>", "check": "<path d=\"M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z\"/>", "copy": "<path d=\"M216,28H88A12,12,0,0,0,76,40V76H40A12,12,0,0,0,28,88V216a12,12,0,0,0,12,12H168a12,12,0,0,0,12-12V180h36a12,12,0,0,0,12-12V40A12,12,0,0,0,216,28ZM156,204H52V100H156Zm48-48H180V88a12,12,0,0,0-12-12H100V52H204Z\"/>", "crosshair": "<path d=\"M232,116h-4.72A100.21,100.21,0,0,0,140,28.72V24a12,12,0,0,0-24,0v4.72A100.21,100.21,0,0,0,28.72,116H24a12,12,0,0,0,0,24h4.72A100.21,100.21,0,0,0,116,227.28V232a12,12,0,0,0,24,0v-4.72A100.21,100.21,0,0,0,227.28,140H232a12,12,0,0,0,0-24Zm-92,87v-3a12,12,0,0,0-24,0v3a76.15,76.15,0,0,1-63-63h3a12,12,0,0,0,0-24H53a76.15,76.15,0,0,1,63-63v3a12,12,0,0,0,24,0V53a76.15,76.15,0,0,1,63,63h-3a12,12,0,0,0,0,24h3A76.15,76.15,0,0,1,140,203ZM128,84a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,84Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,148Z\"/>", "export": "<path d=\"M220,112v96a20,20,0,0,1-20,20H56a20,20,0,0,1-20-20V112A20,20,0,0,1,56,92H76a12,12,0,0,1,0,24H60v88H196V116H180a12,12,0,0,1,0-24h20A20,20,0,0,1,220,112ZM96.49,72.49,116,53v83a12,12,0,0,0,24,0V53l19.51,19.52a12,12,0,1,0,17-17l-40-40a12,12,0,0,0-17,0l-40,40a12,12,0,1,0,17,17Z\"/>", "fire": "<path d=\"M177.62,159.6a52,52,0,0,1-34,34,12.2,12.2,0,0,1-3.6.55,12,12,0,0,1-3.6-23.45,28,28,0,0,0,18.32-18.32,12,12,0,0,1,22.9,7.2ZM220,144a92,92,0,0,1-184,0c0-28.81,11.27-58.18,33.48-87.28a12,12,0,0,1,17.9-1.33L107.07,74.5,127,19.89a12,12,0,0,1,18.94-5.12C168.2,33.25,220,82.85,220,144Zm-24,0c0-41.71-30.61-78.39-52.52-99.29l-20.21,55.4a12,12,0,0,1-19.63,4.5L80.71,82.36C67,103.38,60,124.06,60,144a68,68,0,0,0,136,0Z\"/>", "gear-six": "<path d=\"M128,76a52,52,0,1,0,52,52A52.06,52.06,0,0,0,128,76Zm0,80a28,28,0,1,1,28-28A28,28,0,0,1,128,156Zm113.86-49.57A12,12,0,0,0,236,98.34L208.21,82.49l-.11-31.31a12,12,0,0,0-4.25-9.12,116,116,0,0,0-38-21.41,12,12,0,0,0-9.68.89L128,37.27,99.83,21.53a12,12,0,0,0-9.7-.9,116.06,116.06,0,0,0-38,21.47,12,12,0,0,0-4.24,9.1l-.14,31.34L20,98.35a12,12,0,0,0-5.85,8.11,110.7,110.7,0,0,0,0,43.11A12,12,0,0,0,20,157.66l27.82,15.85.11,31.31a12,12,0,0,0,4.25,9.12,116,116,0,0,0,38,21.41,12,12,0,0,0,9.68-.89L128,218.73l28.14,15.74a12,12,0,0,0,9.7.9,116.06,116.06,0,0,0,38-21.47,12,12,0,0,0,4.24-9.1l.14-31.34,27.81-15.81a12,12,0,0,0,5.85-8.11A110.7,110.7,0,0,0,241.86,106.43Zm-22.63,33.18-26.88,15.28a11.94,11.94,0,0,0-4.55,4.59c-.54,1-1.11,1.93-1.7,2.88a12,12,0,0,0-1.83,6.31L184.13,199a91.83,91.83,0,0,1-21.07,11.87l-27.15-15.19a12,12,0,0,0-5.86-1.53h-.29c-1.14,0-2.3,0-3.44,0a12.08,12.08,0,0,0-6.14,1.51L93,210.82A92.27,92.27,0,0,1,71.88,199l-.11-30.24a12,12,0,0,0-1.83-6.32c-.58-.94-1.16-1.91-1.7-2.88A11.92,11.92,0,0,0,63.7,155L36.8,139.63a86.53,86.53,0,0,1,0-23.24l26.88-15.28a12,12,0,0,0,4.55-4.58c.54-1,1.11-1.94,1.7-2.89a12,12,0,0,0,1.83-6.31L71.87,57A91.83,91.83,0,0,1,92.94,45.17l27.15,15.19a11.92,11.92,0,0,0,6.15,1.52c1.14,0,2.3,0,3.44,0a12.08,12.08,0,0,0,6.14-1.51L163,45.18A92.27,92.27,0,0,1,184.12,57l.11,30.24a12,12,0,0,0,1.83,6.32c.58.94,1.16,1.91,1.7,2.88A11.92,11.92,0,0,0,192.3,101l26.9,15.33A86.53,86.53,0,0,1,219.23,139.61Z\"/>", "lightning": "<path d=\"M219.71,117.38a12,12,0,0,0-7.25-8.52L161.28,88.39l10.59-70.61a12,12,0,0,0-20.64-10l-112,120a12,12,0,0,0,4.31,19.33l51.18,20.47L84.13,238.22a12,12,0,0,0,20.64,10l112-120A12,12,0,0,0,219.71,117.38ZM113.6,203.55l6.27-41.77a12,12,0,0,0-7.41-12.92L68.74,131.37,142.4,52.45l-6.27,41.77a12,12,0,0,0,7.41,12.92l43.72,17.49Z\"/>", "list": "<path d=\"M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM40,76H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24ZM216,180H40a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Z\"/>", "steps": "<path d=\"M252,56a12,12,0,0,1-12,12H196v36a12,12,0,0,1-12,12H140v36a12,12,0,0,1-12,12H84v36a12,12,0,0,1-12,12H16a12,12,0,0,1,0-24H60V152a12,12,0,0,1,12-12h44V104a12,12,0,0,1,12-12h44V56a12,12,0,0,1,12-12h56A12,12,0,0,1,252,56Z\"/>", "traffic-signal": "<path d=\"M216,140H204V84h12a12,12,0,0,0,0-24H204V40a20,20,0,0,0-20-20H72A20,20,0,0,0,52,40V60H40a12,12,0,0,0,0,24H52v56H40a12,12,0,0,0,0,24H52v52a20,20,0,0,0,20,20H184a20,20,0,0,0,20-20V164h12a12,12,0,0,0,0-24Zm-36,72H76V44H180Zm-52-92A32,32,0,1,0,96,88,32,32,0,0,0,128,120Zm0-40a8,8,0,1,1-8,8A8,8,0,0,1,128,80Zm0,120a32,32,0,1,0-32-32A32,32,0,0,0,128,200Zm0-40a8,8,0,1,1-8,8A8,8,0,0,1,128,160Z\"/>", "trend-up": "<path d=\"M244,56v64a12,12,0,0,1-24,0V85l-75.51,75.52a12,12,0,0,1-17,0L96,129,32.49,192.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0L136,135l67-67H168a12,12,0,0,1,0-24h64A12,12,0,0,1,244,56Z\"/>", "trophy": "<path d=\"M232,60H212V48a12,12,0,0,0-12-12H56A12,12,0,0,0,44,48V60H24A20,20,0,0,0,4,80V96a44.05,44.05,0,0,0,44,44h.77A84.18,84.18,0,0,0,116,195.15V212H96a12,12,0,0,0,0,24h64a12,12,0,0,0,0-24H140V195.11c30.94-4.51,56.53-26.2,67-55.11h1a44.05,44.05,0,0,0,44-44V80A20,20,0,0,0,232,60ZM28,96V84H44v28c0,1.21,0,2.41.09,3.61A20,20,0,0,1,28,96Zm160,15.1c0,33.33-26.71,60.65-59.54,60.9A60,60,0,0,1,68,112V60H188ZM228,96a20,20,0,0,1-16.12,19.62c.08-1.5.12-3,.12-4.52V84h16Z\"/>", "warning": "<path d=\"M240.26,186.1,152.81,34.23h0a28.74,28.74,0,0,0-49.62,0L15.74,186.1a27.45,27.45,0,0,0,0,27.71A28.31,28.31,0,0,0,40.55,228h174.9a28.31,28.31,0,0,0,24.79-14.19A27.45,27.45,0,0,0,240.26,186.1Zm-20.8,15.7a4.46,4.46,0,0,1-4,2.2H40.55a4.46,4.46,0,0,1-4-2.2,3.56,3.56,0,0,1,0-3.73L124,46.2a4.77,4.77,0,0,1,8,0l87.44,151.87A3.56,3.56,0,0,1,219.46,201.8ZM116,136V104a12,12,0,0,1,24,0v32a12,12,0,0,1-24,0Zm28,40a16,16,0,1,1-16-16A16,16,0,0,1,144,176Z\"/>"};
+const gorilla = cls => '<svg class="gor' + (cls ? ' ' + cls : '') + '" viewBox="0 0 64 64" aria-hidden="true"><g class="gg"><path fill-rule="evenodd" d="M32 2l8 4c10 2 16 10 16 20 3 1 4 4 3 7s-3 4-5 4c0 10-7 24-22 24S10 47 10 37c-2 0-4-1-5-4s0-6 3-7c0-10 6-18 16-20zM13 25l17 5.5 2-1 2 1L51 25l-1.5 9.5-7.5 1.5c4 4 6 8 6 12 0 7-7 10-16 10s-16-3-16-10c0-4 2-8 6-12L14.5 34.5z"/><circle cx="24" cy="33" r="1.9"/><circle cx="40" cy="33" r="1.9"/><ellipse cx="28" cy="43.5" rx="2.9" ry="2" transform="rotate(-24 28 43.5)"/><ellipse cx="36" cy="43.5" rx="2.9" ry="2" transform="rotate(24 36 43.5)"/><path d="M23 51.5c6-1.6 12-1.6 18 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></g></svg>';
+const MOTTO = 'Scimmie. Unite. Forti.';
 const ic = (n, cls) => '<svg class="ic' + (cls ? ' ' + cls : '') + '" viewBox="0 0 256 256" aria-hidden="true">' + (PH[n] || '') + '</svg>';
 const ROLE_IC = { grande: 'trophy', costruzione: 'steps', finisher: 'fire', valvola: 'traffic-signal', attivazione: 'lightning', libero: 'barbell' };
 const rng = (a, b) => a + '-' + b;
@@ -746,19 +814,20 @@ function vHome() {
     '<div class="acts"><button class="iconbtn" data-act="archive" aria-label="Archivio">' + ic('archive') + '</button><button class="iconbtn" data-act="settings" aria-label="Impostazioni">' + ic('gear-six') + '</button></div></header>';
   if (S.cur) h += '<button class="live" data-act="resume"' + I() + '><span class="pulse"></span><span style="flex:1;opacity:1"><b>Seduta in corso</b><span>' + esc(monogram(S.cur.title).n) + ', iniziata alle ' + hm(S.cur.startedAt) + '</span></span>' + ic('arrow-right') + '</button>';
   pend.forEach((p, q) => { h += '<div class="ask" style="' + rs('valvola') + ';--i:' + (k++) + '"><b>Dolore a 2 ore</b><p>' + esc(p.e.title) + ', ' + esc(monogram(p.c.title).n) + ' del ' + dShort(p.c.startedAt) + '</p>' + dotsHtml('pain2h', null, 'data-k="' + q + '"') + '</div>'; });
+  if (S.justClosed) h += '<button class="win" data-act="dismisswin"' + I() + '>' + gorilla() + '<span><b>Seduta archiviata</b><span>' + MOTTO + '</span></span></button>';
   if (S.painShare) h += '<div class="notice"' + I() + '><b>Registrato: ' + S.painShare.n + '/10 a 2 ore</b><p>' + esc(S.painShare.title) + '</p><div class="row"><button class="btn sm acc" data-act="sharepain">Invia al coach</button><button class="btn sm soft" data-act="dismisspain">Chiudi</button></div></div>';
-  if (!S.key) h += '<div class="notice"' + I() + '><b>Stai guardando una scheda di esempio</b><p>Incolla la chiave API di Hevy per leggere le tue.</p><button class="btn sm acc" data-act="settings">Collega Hevy</button></div>';
-  h += '<div class="sec-h"' + I() + '><h2 class="h2">Schede</h2>' + (S.key ? '<button data-act="refresh">' + (S.loading ? 'aggiorno' : (R ? 'aggiornate alle ' + hm(R.at) : 'aggiorna')) + ic('arrows-clockwise') + '</button>' : '') + '</div>';
+  if (!S.key) h += '<div class="notice"' + I() + '><b>Stai guardando una split di esempio</b><p>Incolla la chiave API di Hevy per leggere le tue.</p><button class="btn sm acc" data-act="settings">Collega Hevy</button></div>';
+  h += '<div class="sec-h"' + I() + '><h2 class="h2">Split</h2>' + (S.key ? '<button data-act="refresh">' + (S.loading ? 'aggiorno' : (R ? 'aggiornate alle ' + hm(R.at) : 'aggiorna')) + ic('arrows-clockwise') + '</button>' : '') + '</div>';
   if (S.err) h += '<div class="status err" style="margin:0 0 12px">' + esc(S.err) + '</div>';
-  if (!list.length) h += '<div class="empty">' + (S.loading ? 'Leggo le schede da Hevy.' : 'Nessuna scheda trovata. Creane una in Hevy e tocca aggiorna.') + '</div>';
+  if (!list.length) h += '<div class="empty">' + (S.loading ? 'Leggo le split da Hevy.' : 'Nessuna split trovata. Creane una in Hevy e tocca aggiorna.') + '</div>';
   list.forEach((r, i) => {
     const exs = (r.exercises || []).slice().sort((a, b) => (a.index || 0) - (b.index || 0)), m = monogram(r.title);
     const an = exs.map(analyze), big = an.findIndex(a => a.p.role === 'grande'), nsets = exs.reduce((n, e) => n + (e.sets || []).length, 0);
-    h += '<button class="rrow" style="' + rs(CYCLE[i % CYCLE.length]) + ';--i:' + (k++) + '" data-act="start" data-i="' + i + '"><span class="tape"></span><span class="ltr">' + esc(m.l) + '</span><span class="rinfo"><b>' + esc(m.n) + '</b>' +
-      (big >= 0 ? '<span>' + esc(exs[big].title) + '</span>' : '') + '<span>' + exs.length + ' esercizi, ' + nsets + ' serie</span></span>' +
+    h += '<button class="rrow" style="' + rs(CYCLE[i % CYCLE.length]) + ';--i:' + (k++) + '" data-act="start" data-i="' + i + '"><span class="tape"></span><span class="ltr">' + esc(m.l) + '</span><span class="rinfo"><b>' + esc(m.n) + (/scimmi/i.test(m.n) ? gorilla('inl') : '') + '</b>' +
+      (big >= 0 ? '<span>' + esc(exs[big].title) + '</span>' : '') + '<span>' + exs.length + ' esercizi, ' + nsets + ' set</span></span>' +
       (big >= 0 && an[big].maxW ? '<span class="rkg num">' + fmt(an[big].maxW) + '<small>kg</small></span>' : '<span></span>') + '</button>';
   });
-  return h + '<p class="foot">I tuoi dati restano su questo telefono e in Hevy.</p></div>';
+  return h + '<p class="foot motto">' + gorilla() + '<span>' + MOTTO + '</span></p></div>';
 }
 
 /* --- pezzi disegnati: usati solo dallo stile Doodle --- */
@@ -779,10 +848,12 @@ function face(n) {
 
 function scale(p) {
   if (p.hi == null) return '';
-  const pos = v => (Math.min(10, Math.max(6, v)) - 6) / 4 * 100, from = p.lo != null ? p.lo : 6;
+  const pos = v => (Math.min(10, Math.max(6, v)) - 6) / 4 * 100, w = Math.max(3, pos(p.hi));
   let t = ''; for (let v = 6; v <= 10.001; v += 0.5) { const maj = Math.abs(v - Math.round(v)) < 0.01; t += '<i class="tick' + (maj ? ' maj' : '') + '" style="left:' + pos(v).toFixed(2) + '%">' + (maj ? '<u class="num">' + Math.round(v) + '</u>' : '') + '</i>'; }
   const say = p.role === 'valvola' ? 'non oltre!' : p.role === 'attivazione' ? 'leggero!' : p.lo != null ? 'resta qui' : 'tetto', right = pos(p.hi) > 55;
-  return '<div class="scale"><div class="trk"></div><div class="zone' + (p.lo == null ? ' cap' : '') + '" style="left:' + pos(from).toFixed(2) + '%;width:' + (pos(p.hi) - pos(from)).toFixed(2) + '%"></div><div class="stop" style="left:' + pos(p.hi).toFixed(2) + '%"></div>' + t +
+  return '<div class="scale"><div class="trk"></div><div class="zone" style="width:' + w.toFixed(2) + '%;background-size:' + (10000 / w).toFixed(1) + '% 100%"></div>' +
+    (p.lo != null ? '<div class="zlo" style="left:' + pos(p.lo).toFixed(2) + '%;width:' + (pos(p.hi) - pos(p.lo)).toFixed(2) + '%"></div>' : '') +
+    '<div class="stop" style="left:' + pos(p.hi).toFixed(2) + '%"></div>' + t +
     '<div class="anno' + (right ? ' r' : '') + '" style="left:' + pos(p.hi).toFixed(2) + '%"><span>' + say + '</span><svg viewBox="0 0 40 34"><g filter="url(#wob)"><path d="' + (right ? 'M4 4C18 4 30 12 33 28' : 'M36 4C22 4 10 12 7 28') + '"/><path d="' + (right ? 'M25 22l8 7 4-10' : 'M15 22l-8 7-4-10') + '"/></g></svg></div></div>';
 }
 function track(rr, target) {
@@ -802,7 +873,7 @@ function vSession() {
 }
 function vPage(e, i) {
   const a = analyze(e), p = a.p, R = ROLES[p.role], n = S.cur.exercises.length;
-  const lead = p.qual || (p.hi == null ? '' : p.role === 'valvola' ? 'fisso, su tutte le serie' : p.lo != null ? 'zona di lavoro' : 'tetto da non superare');
+  const lead = p.qual || (p.hi == null ? '' : p.role === 'valvola' ? 'fisso, su tutti i set' : p.lo != null ? 'zona di lavoro' : 'tetto da non superare');
   let h = '<section class="page" data-i="' + i + '" style="' + rs(p.role) + '">' + (p.role === 'valvola' ? '<div class="hazard"></div>' : '') + '<div class="hero"><span class="tape"></span>';
   h += '<div class="xhead" style="--i:0"><span class="role">' + ic(ROLE_IC[p.role]) + R.name + '</span>' + p.badges.map(b => '<span class="tag2">' + esc(b.charAt(0) + b.slice(1).toLowerCase()) + '</span>').join('') + '</div><span class="ghost num" aria-hidden="true">' + String(i + 1).padStart(2, '0') + '</span>' +
     mascot(p.role) + '<h2 class="ex-title" style="--i:1">' + esc(e.title) + '</h2>' + (p.tagline ? '<div class="tagline" style="--i:2">' + esc(p.tagline) + '</div>' : '');
@@ -816,7 +887,7 @@ function vPage(e, i) {
     return '<div class="set' + (top ? ' top' : '') + '"><span class="tagc">' + (a.mixed ? (top ? 'Top' : 'BD') : 'S' + (k + 1)) + '</span><span class="w num">' + (s.weight_kg ? fmt(s.weight_kg) + '<small>kg</small>' : 'corpo') + '</span>' + track(rr, s.reps) + '</div>';
   }).join('') + (a.trig ? '<div class="trigger">' + a.trig + '</div>' : '') + '</div>';
 
-  const calls = p.lines.filter(l => l.type !== 'text'), txt = p.lines.filter(l => l.type === 'text');
+  const calls = p.lines.filter(l => l.type === 'warn' || l.type === 'up' || l.type === 'target'), txt = p.lines.filter(l => l.type === 'text');
   if (calls.length || txt.length) {
     const long = txt.map(l => l.text).join(' ').length > 320;
     h += '<div class="blk coach"><div class="hd"><h3>' + ic('chat-text') + 'Coach</h3></div>' +
@@ -824,17 +895,21 @@ function vPage(e, i) {
       (txt.length ? '<div class="note-full' + (long && !S.openNote[i] ? ' clamp' : '') + '" id="nf-' + i + '">' + txt.map(l => '<p>' + esc(l.text) + '</p>').join('') + '</div>' + (long ? '<button class="more" data-act="morenote" data-i="' + i + '">' + (S.openNote[i] ? 'Riduci' : 'Leggi tutto') + '</button>' : '') : '') + '</div>';
   }
   h += '<div id="my-' + i + '">' + vMy(e, i, a) + '</div>';
-  h += '<div class="blk"><div class="hd"><h3>Ultime sedute</h3><span>solo serie di lavoro</span></div><div id="hist-' + i + '" class="muted" style="font-size:14.5px">Carico lo storico.</div></div>';
+  h += '<div class="blk"><div class="hd"><h3>Storico</h3><span>solo set di lavoro</span></div><div id="hist-' + i + '" class="muted" style="font-size:14.5px">Carico lo storico.</div></div>';
   return h + '</section>';
 }
+function slider(kind, i, v) {
+  const pc = v == null ? 0 : v * 10;
+  return '<div class="sl' + (v == null ? ' unset' : '') + (v != null && v >= 5 ? ' hi' : '') + '" data-sl="' + kind + '" data-i="' + i + '" role="slider" aria-label="Dolore da 0 a 10" aria-valuemin="0" aria-valuemax="10" aria-valuenow="' + (v == null ? 0 : v) + '"><div class="sl-trk"></div><div class="sl-fill" style="width:calc(' + pc + '% + 18px);background-size:calc((100% - 18px) * ' + (pc ? (100 / pc).toFixed(3) : 1) + ' + 36px) 100%"></div><div class="sl-th" style="left:' + pc + '%"></div></div><div class="sl-sc num"><span>0</span><span>5</span><span>10</span></div>';
+}
 function vMy(e, i, a) {
-  a = a || analyze(e); const sc = S.scope[i] || 'all', cur = e.my.chips[sc] || [];
+  a = a || analyze(e); let sc = S.scope[i]; if (!sc || sc === 'all' || +sc.slice(1) >= a.work.length) sc = 's0';
+  const cur = e.my.chips[sc] || [], valve = a.p.role === 'valvola';
   let h = '<div class="blk"><div class="hd"><h3>Appunti</h3>' + (hasNote(e) ? '<span class="saved">salvato</span>' : '<span>si salvano da soli</span>') + '</div>';
-  h += '<div class="scope"><button class="' + (sc === 'all' ? 'on' : '') + '" data-act="scope" data-i="' + i + '" data-s="all">Esercizio' + ((e.my.chips.all || []).length ? '<span class="dot"></span>' : '') + '</button>' +
-    a.work.map((s, k) => '<button class="' + (sc === 's' + k ? 'on' : '') + '" data-act="scope" data-i="' + i + '" data-s="s' + k + '">Serie ' + (k + 1) + (a.mixed ? ((s.weight_kg || 0) === a.maxW ? ' top' : ' bd') : '') + ((e.my.chips['s' + k] || []).length ? '<span class="dot"></span>' : '') + '</button>').join('') + '</div>';
-  CHIPS.forEach(g => { h += '<div class="chips">' + g.items.map(c => '<button class="chip' + (g.body ? ' body' : '') + (cur.includes(c) ? ' on' : '') + '" data-act="chip" data-i="' + i + '" data-c="' + esc(c) + '">' + esc(c) + '</button>').join('') + '</div>'; });
-  if (needsPain(e, a)) h += '<div class="pain"><div class="ph">Dolore durante <span>' + (a.p.role === 'valvola' ? 'sempre, anche se è zero' : 'da 0 a 10') + '</span>' + face(e.my.pain) + '</div>' + dotsHtml('pain', e.my.pain, 'data-i="' + i + '"') + '</div>';
-  else h += '<button class="more" data-act="showpain" data-i="' + i + '">Segna un dolore da 0 a 10</button>';
+  h += '<div class="scope">' + a.work.map((s, k) => '<button class="' + (sc === 's' + k ? 'on' : '') + '" data-act="scope" data-i="' + i + '" data-s="s' + k + '">Set ' + (k + 1) + (a.mixed ? ((s.weight_kg || 0) === a.maxW ? ' top' : ' bd') : '') + ((e.my.chips['s' + k] || []).length ? '<span class="dot"></span>' : '') + '</button>').join('') + '</div>';
+  h += '<div class="chips">' + CHIPS.map(g => g.items.map(c => '<button class="chip' + (g.body ? ' body' : '') + (cur.includes(c) ? ' on' : '') + '" data-act="chip" data-i="' + i + '" data-c="' + esc(c) + '">' + esc(c) + '</button>').join('')).join('') + '</div>';
+  h += '<div class="pain"><div class="ph"><span class="pl">Dolore durante' + (valve ? '<em>sulle valvole si segna sempre, anche zero</em>' : '') + '</span>' + face(e.my.pain) + '<b class="pv num" id="pv-' + i + '">' + (e.my.pain == null ? '-' : e.my.pain) + '<small>/10</small></b></div>' + slider('pain', i, e.my.pain) +
+    (e.my.pain != null ? '<button class="more" data-act="painclear" data-i="' + i + '">Togli il dato</button>' : '') + '</div>';
   h += '<div class="field"><label class="lbl" for="ta-' + i + '">Note</label><textarea class="ta" id="ta-' + i + '" data-in="text" data-i="' + i + '" placeholder="Sensazioni, tecnica, cosa cambieresti">' + esc(e.my.text) + '</textarea></div></div>';
   return h;
 }
@@ -854,12 +929,30 @@ function paintNav() {
   $('#bnextw').innerHTML = i === n - 1 ? '<button class="dnext" data-act="toclose">Chiudi seduta</button>' : '<button class="dnext" data-act="next">Avanti' + ic('caret-right') + '</button>';
   loadHist(i); if (i + 1 < n) loadHist(i + 1);
 }
+function mesoHtml(a) {
+  const m = a.p.meso; if (!m) return '';
+  let st = '';
+  if (a.maxW && m.target != null && a.maxW >= m.target) st = 'target centrato';
+  else if (a.maxW && m.min != null && a.maxW >= m.min) st = 'minimo centrato' + (m.target != null ? ', al target mancano ' + fmt(m.target - a.maxW) + ' kg' : '');
+  else if (a.maxW && m.min != null) st = 'al minimo mancano ' + fmt(m.min - a.maxW) + ' kg';
+  return '<div class="rec"><span class="k">Target del mesociclo</span><b class="num">' + (m.min != null ? '<small>minimo</small> ' + fmt(m.min) : '') + (m.min != null && m.target != null ? '<i></i>' : '') + (m.target != null ? '<small>target</small> ' + fmt(m.target) : '') + (m.min == null && m.target == null ? esc(m.text) : ' <small>kg</small>') + '</b>' + (st ? '<span class="sub">Oggi sei a ' + fmt(a.maxW) + ' kg: ' + st + '.</span>' : '') + '</div>';
+}
+function rpHtml(a, d) {
+  if (a.p.role === 'valvola') return '<div class="rec"><span class="k">Il tuo RP</span><span class="sub">Valvola: il carico qui non è un risultato di forza, quindi nessun record.</span></div>';
+  let h = '';
+  if (a.p.rp) h += '<div class="rec"><span class="k">Il tuo RP, validato dal coach</span><b>' + esc(a.p.rp) + '</b></div>';
+  if (d.pr) h += '<div class="rec"><span class="k">' + (a.p.rp ? 'Massimo a log su Hevy' : 'Il tuo RP a log') + '</span><b class="num">' + fmt(d.pr.w) + ' <small>kg</small> × ' + d.pr.r + '</b><span class="sub">' + dLong(d.pr.at) + (d.est ? '. e1RM stimato ' + fmt(Math.round(d.est.v * 2) / 2) + ' kg (da ' + fmt(d.est.w) + '×' + d.est.r + ')' : '') + '</span></div>';
+  else if (d.reps) h += '<div class="rec"><span class="k">Il tuo RP a log</span><b class="num">' + d.reps.r + ' <small>reps a corpo libero</small></b><span class="sub">' + dLong(d.reps.at) + '</span></div>';
+  return h;
+}
 async function loadHist(i) {
   const c = S.cur, e = c.exercises[i], el = $('#hist-' + i); if (!el || el.dataset.ok) return; el.dataset.ok = '1';
+  const a = analyze(e);
   try {
-    const hs = await getHistory(e), hi = analyze(e).p.hi;
-    el.innerHTML = hs.length ? hs.map(s => '<div class="hrow"><span class="d num">' + dShort(s.start) + '</span><span class="s num" style="color:var(--ink)">' + s.sets.map(x => '<span>' + (x.w ? fmt(x.w) + '×' : '') + (x.r ?? '-') + (x.rpe != null ? '<em class="' + (hi != null && x.rpe > hi ? 'over' : '') + '">@' + fmt(x.rpe) + '</em>' : '') + '</span>').join('') + '</span></div>').join('') : 'Nessuna seduta negli ultimi 90 giorni.';
-  } catch (err) { el.textContent = 'Storico non disponibile: ' + err.message; delete el.dataset.ok; }
+    const d = await getHistory(e), hi = a.p.hi;
+    el.innerHTML = (d.last.length ? d.last.map(s => '<div class="hrow"><span class="d num">' + dShort(s.start) + '</span><span class="s num" style="color:var(--ink)">' + s.sets.map(x => '<span>' + (x.w ? fmt(x.w) + '×' : '') + (x.r ?? '-') + (x.rpe != null ? '<em class="' + (hi != null && x.rpe > hi ? 'over' : '') + '">@' + fmt(x.rpe) + '</em>' : '') + '</span>').join('') + '</span></div>').join('') : '<p style="margin:0">Nessuna seduta a log per questo esercizio.</p>') +
+      '<div class="recs">' + rpHtml(a, d) + mesoHtml(a) + '</div>';
+  } catch (err) { el.innerHTML = '<p style="margin:0">Storico non disponibile: ' + esc(err.message) + '</p><div class="recs">' + mesoHtml(a) + '</div>'; delete el.dataset.ok; }
 }
 function goPage(i) { const pager = $('#pager'); if (!pager) return; i = Math.max(0, Math.min(S.cur.exercises.length - 1, i)); pager.scrollTo({ left: i * pager.clientWidth, behavior: 'smooth' }); }
 function repaintMy(i) { const el = $('#my-' + i); if (!el) return; el.innerHTML = vMy(S.cur.exercises[i], i); autosize(el); paintNav(); }
@@ -893,7 +986,7 @@ function vClose() {
 }
 function vArchive() {
   let h = '<div class="view enter"><div class="topbar"><button class="iconbtn" data-act="home" aria-label="Indietro">' + ic('caret-left') + '</button><h2>Archivio</h2></div>';
-  if (!S.archive.length) h += '<div class="empty">Qui finiscono le sedute chiuse, con i tuoi appunti. Puoi riaprirle e ricondividerle quando vuoi.</div>';
+  if (!S.archive.length) h += '<div class="empty big">' + gorilla() + '<p>Qui finiscono le sedute chiuse, con i tuoi appunti. Puoi riaprirle e ricondividerle quando vuoi.</p></div>';
   S.archive.forEach(c => { const nn = c.exercises.filter(hasNote).length; h += '<button class="arow" data-act="openarch" data-id="' + c.id + '"><b>' + esc(monogram(c.title).n) + '</b><span>' + dLong(c.startedAt) + ', ' + esc(c.gym) + ', ' + nn + (nn === 1 ? ' annotato' : ' annotati') + '</span></button>'; });
   return h + '</div>';
 }
@@ -912,7 +1005,7 @@ function vSettings() {
     '<div class="fset"><h3>Aspetto</h3><span class="lbl">Stile</span><div class="skins">' + SKINS.map(x => '<button class="skin' + (sk === x[0] ? ' on' : '') + '" data-act="skin" data-v="' + x[0] + '"><span class="p-' + x[0] + '"></span>' + x[1] + '</button>').join('') + '</div><div style="height:18px"></div>' +
     '<span class="lbl">Tema</span><div class="seg">' + [['auto', 'Automatico'], ['light', 'Chiaro'], ['dark', 'Scuro']].map(x => '<button class="' + (th === x[0] ? 'on' : '') + '" data-act="theme" data-v="' + x[0] + '">' + x[1] + '</button>').join('') + '</div></div>' +
     '<div class="fset"><h3>Palestra</h3><span class="lbl">Predefinita per le nuove sedute</span><div class="seg">' + GYMS.map(x => '<button class="' + (gym === x ? 'on' : '') + '" data-act="defgym" data-v="' + x + '">' + x + '</button>').join('') + '</div></div>' +
-    '<div class="fset"><h3>Dati</h3><p>Schede e storico sono copie locali per lavorare anche senza rete. Gli appunti archiviati non vengono toccati.</p><button class="btn soft" data-act="clearcache">Svuota le copie locali di Hevy</button></div>' +
+    '<div class="fset"><h3>Dati</h3><p>Split e storico sono copie locali per lavorare anche senza rete. Gli appunti archiviati non vengono toccati.</p><button class="btn soft" data-act="clearcache">Svuota le copie locali di Hevy</button></div>' +
     '<p class="foot">Spotter ' + VERSION + '</p></div>';
 }
 
@@ -926,7 +1019,7 @@ document.addEventListener('click', async ev => {
     case 'home': go('home'); loadRoutines(); break;
     case 'refresh': loadRoutines(true); break;
     case 'resume': go('session'); break;
-    case 'start': { const r = S.routines.list[i]; if (S.cur && S.cur.routineId !== r.id) { openSheet('<div class="grab"></div><div class="h3" style="margin:0 4px 8px"><b style="font-size:19px">C\'è già una seduta aperta</b></div><div class="muted" style="margin:0 4px 16px;font-size:14.5px">' + esc(S.cur.title) + ', iniziata alle ' + hm(S.cur.startedAt) + '. Cosa ne faccio?</div><button class="btn acc" data-act="resume">Riprendila</button><div style="height:10px"></div><button class="btn soft" data-act="replace" data-i="' + i + '">Archiviala e apri ' + esc(monogram(r.title).n) + '</button>'); } else if (S.cur) go('session'); else startSession(r); break; }
+    case 'start': { S.justClosed = false; const r = S.routines.list[i]; if (S.cur && S.cur.routineId !== r.id) { openSheet('<div class="grab"></div><div class="h3" style="margin:0 4px 8px"><b style="font-size:19px">C\'è già una seduta aperta</b></div><div class="muted" style="margin:0 4px 16px;font-size:14.5px">' + esc(S.cur.title) + ', iniziata alle ' + hm(S.cur.startedAt) + '. Cosa ne faccio?</div><button class="btn acc" data-act="resume">Riprendila</button><div style="height:10px"></div><button class="btn soft" data-act="replace" data-i="' + i + '">Archiviala e apri ' + esc(monogram(r.title).n) + '</button>'); } else if (S.cur) go('session'); else startSession(r); break; }
     case 'replace': { const r = S.routines.list[i]; S.cur.closedAt = new Date().toISOString(); S.archive.unshift(S.cur); saveArch(); S.cur = null; startSession(r); break; }
     case 'prev': goPage(S.page - 1); break;
     case 'next': goPage(S.page + 1); break;
@@ -935,8 +1028,8 @@ document.addEventListener('click', async ev => {
     case 'abandon': if (b.dataset.sure) { S.cur = null; saveCur(); go('home'); toast('Seduta annullata'); } else { b.dataset.sure = '1'; b.textContent = 'Tocca ancora per confermare: gli appunti si perdono'; } break;
     case 'toclose': S.anchor = null; go('close'); break;
     case 'scope': S.scope[i] = b.dataset.s; repaintMy(i); break;
-    case 'chip': { const e = c.exercises[i], sc = S.scope[i] || 'all', arr = e.my.chips[sc] || (e.my.chips[sc] = []), k = arr.indexOf(b.dataset.c); k >= 0 ? arr.splice(k, 1) : arr.push(b.dataset.c); saveCur(); repaintMy(i); break; }
-    case 'showpain': c.exercises[i].my.showPain = true; repaintMy(i); break;
+    case 'chip': { const e = c.exercises[i], sc = (S.scope[i] && S.scope[i] !== 'all') ? S.scope[i] : 's0', arr = e.my.chips[sc] || (e.my.chips[sc] = []), k = arr.indexOf(b.dataset.c); k >= 0 ? arr.splice(k, 1) : arr.push(b.dataset.c); saveCur(); repaintMy(i); break; }
+    case 'painclear': c.exercises[i].my.pain = null; saveCur(); repaintMy(i); break;
     case 'pain': { const e = c.exercises[i], n = +b.dataset.n; e.my.pain = e.my.pain === n ? null : n; saveCur(); repaintMy(i); break; }
     case 'cpain': { const e = c.exercises[i], n = +b.dataset.n; e.my.pain = e.my.pain === n ? null : n; saveCur(); const st = $('.view').scrollTop; render(); $('.view').scrollTop = st; break; }
     case 'morenote': S.openNote[i] = !S.openNote[i]; $('#nf-' + i).classList.toggle('clamp', !S.openNote[i]); b.textContent = S.openNote[i] ? 'Riduci' : 'Leggi tutto'; break;
@@ -953,23 +1046,35 @@ document.addEventListener('click', async ev => {
     case 'pain2h': { const p = pendingPain()[+b.dataset.k]; if (!p) break; const n = +b.dataset.n; p.e.my.pain2h = n; p.where === 'arch' ? saveArch() : saveCur(); S.painShare = { n, title: p.e.title, text: 'SPOTTER · aggiornamento valvola\n' + p.e.title + ', ' + p.c.title + ', ' + dLong(p.c.startedAt) + '\nDolore durante: ' + (p.e.my.pain != null ? p.e.my.pain + '/10' : 'non raccolto') + ' · a 2 ore: ' + n + '/10' }; render(); break; }
     case 'sharepain': if (S.painShare) { await shareText(S.painShare.text, 'Spotter · valvola'); } break;
     case 'dismisspain': S.painShare = null; render(); break;
+    case 'dismisswin': S.justClosed = false; render(); break;
     case 'ashare': { const a = S.archive.find(x => x.id === S.archId); shareText(buildExport(a), 'Spotter · ' + a.title); break; }
     case 'acopy': copyText(buildExport(S.archive.find(x => x.id === S.archId))); break;
     case 'adel': if (b.dataset.sure) { S.archive = S.archive.filter(x => x.id !== S.archId); saveArch(); go('archive'); } else { b.dataset.sure = '1'; b.textContent = 'Confermi?'; } break;
     case 'theme': LS.set('theme', b.dataset.v); applyTheme(); render(); break;
     case 'skin': LS.set('skin', b.dataset.v); applyTheme(); render(); break;
     case 'defgym': LS.set('gym', b.dataset.v); render(); break;
-    case 'clearcache': LS.del('routines'); LS.del('hist'); S.routines = null; toast('Copie locali svuotate'); loadRoutines(true); break;
-    case 'delkey': S.key = ''; LS.del('key'); LS.del('routines'); LS.del('hist'); S.routines = null; await loadRoutines(); render(); break;
+    case 'clearcache': LS.del('routines'); LS.del('hist'); LS.del('hist2'); S.routines = null; toast('Copie locali svuotate'); loadRoutines(true); break;
+    case 'delkey': S.key = ''; LS.del('key'); LS.del('routines'); LS.del('hist'); LS.del('hist2'); S.routines = null; await loadRoutines(); render(); break;
     case 'savekey': {
       const v = $('#key').value.trim(), st = $('#keystatus'); if (!v) { st.className = 'status err'; st.textContent = 'Incolla prima la chiave.'; break; }
       S.key = v; st.className = 'status'; st.textContent = 'Verifico con Hevy.';
-      try { await api('/v1/routines?page=1&pageSize=1'); LS.set('key', v); st.className = 'status ok'; st.textContent = 'Collegato. Leggo le tue schede.'; await loadRoutines(true); go('home'); }
+      try { await api('/v1/routines?page=1&pageSize=1'); LS.set('key', v); st.className = 'status ok'; st.textContent = 'Collegato. Leggo le tue split.'; await loadRoutines(true); go('home'); }
       catch (e) { S.key = LS.get('key', ''); st.className = 'status err'; st.textContent = /fetch|load failed/i.test(e.message) ? 'Hevy non raggiungibile: controlla la rete.' : e.message; }
       break;
     }
   }
 });
+let slDrag = null;
+function slValue(sl, ev) { const r = sl.getBoundingClientRect(); return Math.max(0, Math.min(10, Math.round((ev.clientX - r.left) / r.width * 10))); }
+function slPaint(sl, v) {
+  sl.dataset.v = v; sl.classList.remove('unset'); sl.classList.toggle('hi', v >= 5); sl.setAttribute('aria-valuenow', v);
+  const pc = v * 10; sl.querySelector('.sl-th').style.left = pc + '%';
+  const f = sl.querySelector('.sl-fill'); f.style.width = 'calc(' + pc + '% + 18px)'; f.style.backgroundSize = 'calc((100% - 18px) * ' + (pc ? (100 / pc).toFixed(3) : 1) + ' + 36px) 100%';
+  const pv = $('#pv-' + sl.dataset.i); if (pv) pv.firstChild.nodeValue = String(v);
+}
+document.addEventListener('pointerdown', ev => { const sl = ev.target.closest && ev.target.closest('.sl'); if (!sl) return; ev.preventDefault(); slDrag = sl; try { sl.setPointerCapture(ev.pointerId); } catch (e) {} slPaint(sl, slValue(sl, ev)); });
+document.addEventListener('pointermove', ev => { if (slDrag) slPaint(slDrag, slValue(slDrag, ev)); });
+['pointerup', 'pointercancel'].forEach(t => document.addEventListener(t, () => { if (!slDrag) return; const sl = slDrag; slDrag = null; const i = +sl.dataset.i, v = +sl.dataset.v; if (S.cur && S.cur.exercises[i] && !isNaN(v)) { S.cur.exercises[i].my.pain = v; saveCur(); repaintMy(i); } }));
 document.addEventListener('input', ev => {
   const t = ev.target; if (!t.dataset || !t.dataset.in || !S.cur) return;
   if (t.dataset.in === 'text') { S.cur.exercises[+t.dataset.i].my.text = t.value; clearTimeout(document._pn); document._pn = setTimeout(paintNav, 400); }
