@@ -137,8 +137,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .hero>*{position:relative;z-index:1}
 .hero>.ghost{position:absolute;z-index:0;right:-14px;top:-46px;font-size:230px;line-height:1;font-weight:850;font-stretch:62%;letter-spacing:-.03em;color:var(--ink);opacity:.055;pointer-events:none}
 .xhead{display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:14.5px;font-weight:600}
-.xhead .role{display:flex;align-items:center;gap:7px;color:var(--ink)}
-.xhead .role .ic{width:20px;height:20px}
+.xhead .role{display:flex;align-items:center;gap:9px;color:var(--accent-ink);font-size:21px;font-weight:800;font-stretch:68%;text-transform:uppercase;letter-spacing:.02em;line-height:1}
+.xhead .role .ic{width:24px;height:24px}
 .xhead .tag2{padding:3px 9px;border-radius:var(--r1);border:1px solid var(--line);font-size:12.5px;font-weight:650;color:var(--ink)}
 .xhead .slot{margin-left:auto;font-size:14px;color:var(--ink3);font-weight:500}
 .ex-title{margin:14px 0 0;font-size:44px;line-height:.92;font-weight:850;font-stretch:62%;text-transform:uppercase;letter-spacing:-.005em;overflow-wrap:anywhere}
@@ -198,6 +198,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .blk.coach .callout+.note-full{margin-top:18px}
 .blk.coach .note-full{color:var(--ink);font-size:16px}
 .blk>.hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.blk>.hd h3.hic{display:flex;align-items:center;gap:9px} .blk>.hd h3.hic .ic{width:22px;height:22px;color:var(--accent-ink)}
 .blk>.hd h3{margin:0;font-size:22px;font-weight:800;font-stretch:68%;text-transform:uppercase;letter-spacing:.01em}
 .blk>.hd span{font-size:13.5px;color:var(--ink3)}
 .blk>.hd span.saved{color:var(--accent-ink);font-weight:650}
@@ -243,7 +244,6 @@ input.in{width:100%;min-height:52px;border-radius:var(--r2);padding:0 14px;backg
 .note-full p{margin:0 0 10px}
 .note-full.clamp{max-height:9.2em;overflow:hidden;-webkit-mask-image:linear-gradient(#000 45%,transparent)}
 .recs{display:grid;gap:0}
-.rec{padding:16px 0;border-top:1px solid var(--line)} .rec:first-child{padding-top:0;border-top:0} .rec:last-child{padding-bottom:0}
 .rec .k{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2);font-weight:650;margin-bottom:9px}
 .rec .k .ic{width:18px;height:18px;color:var(--accent-ink)}
 .rec b{display:block;font-size:30px;line-height:.95;font-weight:780;font-stretch:68%;color:var(--ink)}
@@ -389,7 +389,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 [data-skin="doodle"] .page{padding-top:26px}
 [data-skin="doodle"] .hazard{margin:-26px -20px 30px;height:14px;background:repeating-linear-gradient(-45deg,var(--c) 0 12px,var(--ink) 12px 15px,var(--bg2) 15px 27px,var(--ink) 27px 30px);border-bottom:2px solid var(--ink)}
 [data-skin="doodle"] .hero{position:relative;background:var(--bg2);border:2px solid var(--ink);border-radius:var(--sk1);box-shadow:3px 4px 0 var(--hard);padding:26px 18px 18px}
-[data-skin="doodle"] .xhead .role{background:var(--c);color:#2A2A35;border:2px solid var(--ink);border-radius:var(--sk3);padding:3px 12px 3px 9px;font-family:var(--font-d);font-size:14px;transform:rotate(-2deg)}
+[data-skin="doodle"] .xhead .role{background:var(--c);color:#2A2A35;border:2px solid var(--ink);border-radius:var(--sk3);padding:3px 12px 3px 9px;font-family:var(--font-d);font-size:17px;font-weight:400;font-stretch:100%;text-transform:none;letter-spacing:0;transform:rotate(-2deg)}
 [data-skin="doodle"] .xhead .tag2{border:2px dashed var(--ink);border-radius:var(--sk3);font-size:14px;font-weight:400;transform:rotate(1.5deg)}
 [data-skin="doodle"] .xhead .slot{display:none}
 [data-skin="doodle"] .mascot{display:block;position:absolute;right:10px;top:44px;width:76px;height:76px;transform:rotate(9deg);pointer-events:none}
@@ -455,7 +455,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 [data-skin="doodle"] .sl-trk{opacity:.4}
 [data-skin="doodle"] .sl-th{border:3px solid var(--ink);background:var(--bg2);border-radius:58% 42% 52% 48%/46% 54% 44% 56%;box-shadow:2px 3px 0 var(--hard)}
 [data-skin="doodle"] .sl-sc{font-size:15px}
-[data-skin="doodle"] .rec{border-top:2px dashed var(--line)} [data-skin="doodle"] .rec:first-child{border-top:0}
+
 [data-skin="doodle"] .rec .k,[data-skin="doodle"] .rec .sub{font-size:15.5px;font-weight:400}
 [data-skin="doodle"] .rec b{font-family:var(--font-d);font-weight:400;font-size:24px}
 [data-skin="doodle"] .rec b small{font-family:var(--font);font-size:15px}
@@ -520,7 +520,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 <div class="toast" id="toast"></div>
 <script>
 'use strict';
-const VERSION = '3.3';
+const VERSION = '3.3.1';
 const API = 'https://api.hevyapp.com';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -887,9 +887,7 @@ function vPage(e, i) {
   h += '<div class="xhead" style="--i:0"><span class="role">' + ic(ROLE_IC[p.role]) + R.name + '</span>' + p.badges.map(b => '<span class="tag2">' + esc(b.charAt(0) + b.slice(1).toLowerCase()) + '</span>').join('') + '</div><span class="ghost num" aria-hidden="true">' + String(i + 1).padStart(2, '0') + '</span>' +
     mascot(p.role) + '<h2 class="ex-title" style="--i:1">' + esc(e.title) + '</h2>' + (p.tagline ? '<div class="tagline" style="--i:2">' + esc(p.tagline) + '</div>' : '');
   h += '<div class="rpe" style="--i:3">' + (p.hi != null ? '<div class="rpe-top"><b class="num">' + rpeTxt(p) + '</b><span><strong>RPE' + (p.fromPolicy ? ' da policy' : '') + '</strong>' + esc(lead) + '</span></div>' + scale(p) : '<p class="muted" style="margin:0">Nessun target RPE nella nota di Hevy.</p>') + '</div>';
-  h += '<div class="big" style="--i:4"><div class="load"><span class="k">' + (a.mixed ? 'Top set' : 'Carico') + '</span><b class="num">' + (a.maxW ? fmt(a.maxW) : 'corpo') + '</b>' + (a.maxW ? '<small>kg</small>' : '') + '</div>' +
-    '<div><span class="k">' + (a.range ? 'Range' : 'Reps fisse') + '</span><b class="num">' + (a.range ? rng(a.range.lo, a.range.hi) : ((a.work[0] && a.work[0].reps) ?? '-')) + '</b></div>' +
-    '<div><span class="k">Recupero</span><b class="num">' + (e.rest ? mmss(e.rest) : '-') + '</b></div></div></div>';
+  h += '</div>';
 
   h += setsHtml(a);
 
@@ -901,7 +899,7 @@ function vPage(e, i) {
       (txt.length ? '<div class="note-full' + (long && !S.openNote[i] ? ' clamp' : '') + '" id="nf-' + i + '">' + txt.map(l => '<p>' + esc(l.text) + '</p>').join('') + '</div>' + (long ? '<button class="more" data-act="morenote" data-i="' + i + '">' + (S.openNote[i] ? 'Riduci' : 'Leggi tutto') + '</button>' : '') : '') + '</div>';
   }
   h += '<div id="my-' + i + '">' + vMy(e, i, a) + '</div>';
-  h += '<div class="blk"><div class="hd"><h3>Storico</h3><span>solo set di lavoro</span></div><div id="hist-' + i + '" class="recs"><p class="muted" style="margin:0;font-size:14.5px">Carico lo storico.</p></div></div>';
+  h += '<div id="hist-' + i + '">' + blkH('clock-counter-clockwise', 'Storico', 'solo set di lavoro', '<p class="muted" style="margin:0;font-size:14.5px">Carico lo storico.</p>') + '</div>';
   return h + '</section>';
 }
 function slider(kind, i, v) {
@@ -937,31 +935,31 @@ function paintNav() {
   $('#bnextw').innerHTML = i === n - 1 ? '<button class="dnext" data-act="toclose">Chiudi seduta</button>' : '<button class="dnext" data-act="next">Avanti' + ic('caret-right') + '</button>';
   loadHist(i); if (i + 1 < n) loadHist(i + 1);
 }
-const recHead = (icon, label) => '<span class="k">' + ic(icon) + label + '</span>';
+const blkH = (icon, title, side, body) => '<div class="blk"><div class="hd"><h3 class="hic">' + ic(icon) + title + '</h3>' + (side ? '<span>' + side + '</span>' : '') + '</div>' + body + '</div>';
 function mesoHtml(a) {
   const m = a.p.meso; if (!m) return '';
   let st = '';
   if (a.maxW && m.target != null && a.maxW >= m.target) st = 'target centrato';
   else if (a.maxW && m.min != null && a.maxW >= m.min) st = 'minimo centrato' + (m.target != null ? ', al target mancano ' + fmt(m.target - a.maxW) + ' kg' : '');
   else if (a.maxW && m.min != null) st = 'al minimo mancano ' + fmt(m.min - a.maxW) + ' kg';
-  return '<div class="rec">' + recHead('target', 'Target del mesociclo') + '<b class="num">' + (m.min != null ? '<small>minimo</small> ' + fmt(m.min) : '') + (m.min != null && m.target != null ? '<i></i>' : '') + (m.target != null ? '<small>target</small> ' + fmt(m.target) : '') + (m.min == null && m.target == null ? esc(m.text) : ' <small>kg</small>') + '</b>' + (st ? '<span class="sub">Oggi sei a ' + fmt(a.maxW) + ' kg: ' + st + '.</span>' : '') + '</div>';
+  return blkH('target', 'Target mesociclo', '', '<div class="rec"><b class="num">' + (m.min != null ? '<small>minimo</small> ' + fmt(m.min) : '') + (m.min != null && m.target != null ? '<i></i>' : '') + (m.target != null ? '<small>target</small> ' + fmt(m.target) : '') + (m.min == null && m.target == null ? esc(m.text) : ' <small>kg</small>') + '</b>' + (st ? '<span class="sub">Oggi sei a ' + fmt(a.maxW) + ' kg: ' + st + '.</span>' : '') + '</div>');
 }
 function rpHtml(a, d) {
-  const H = recHead('medal', 'Record Personale');
-  if (a.p.role === 'valvola') return '<div class="rec">' + H + '<span class="sub">Valvola: il carico qui non è un risultato di forza, quindi nessun record.</span></div>';
+  const B = (body, side) => blkH('medal', 'Record Personale', side || '', '<div class="rec">' + body + '</div>');
+  if (a.p.role === 'valvola') return B('<span class="sub" style="margin:0">Valvola: il carico qui non è un risultato di forza, quindi nessun record.</span>');
   const log = d && d.pr ? fmt(d.pr.w) + ' kg × ' + d.pr.r + ', ' + dLong(d.pr.at) : '';
-  if (a.p.rp) return '<div class="rec">' + H + '<b>' + esc(a.p.rp) + '</b><span class="sub">Validato dal coach' + (log ? '. Massimo a log su Hevy: ' + log : '') + '</span></div>';
-  if (d && d.pr) return '<div class="rec">' + H + '<b class="num">' + fmt(d.pr.w) + ' <small>kg</small> × ' + d.pr.r + '</b><span class="sub">' + dLong(d.pr.at) + (d.est ? '. e1RM stimato ' + fmt(Math.round(d.est.v * 2) / 2) + ' kg (da ' + fmt(d.est.w) + '×' + d.est.r + ')' : '') + '</span></div>';
-  if (d && d.reps) return '<div class="rec">' + H + '<b class="num">' + d.reps.r + ' <small>reps a corpo libero</small></b><span class="sub">' + dLong(d.reps.at) + '</span></div>';
+  if (a.p.rp) return B('<b>' + esc(a.p.rp) + '</b>' + (log ? '<span class="sub">Massimo a log su Hevy: ' + log + '</span>' : ''), 'validato dal coach');
+  if (d && d.pr) return B('<b class="num">' + fmt(d.pr.w) + ' <small>kg</small> × ' + d.pr.r + '</b><span class="sub">' + dLong(d.pr.at) + (d.est ? '. e1RM stimato ' + fmt(Math.round(d.est.v * 2) / 2) + ' kg (da ' + fmt(d.est.w) + '×' + d.est.r + ')' : '') + '</span>', 'dal log Hevy');
+  if (d && d.reps) return B('<b class="num">' + d.reps.r + ' <small>reps a corpo libero</small></b><span class="sub">' + dLong(d.reps.at) + '</span>', 'dal log Hevy');
   return '';
 }
 async function loadHist(i) {
   const c = S.cur, e = c.exercises[i], el = $('#hist-' + i); if (!el || el.dataset.ok) return; el.dataset.ok = '1';
-  const a = analyze(e), H = recHead('clock-counter-clockwise', 'Ultime sedute');
+  const a = analyze(e), ST = body => blkH('clock-counter-clockwise', 'Storico', 'solo set di lavoro', body);
   try {
     const d = await getHistory(e), hi = a.p.hi;
-    el.innerHTML = '<div class="rec">' + H + (d.last.length ? d.last.map(s => '<div class="hrow"><span class="d num">' + dShort(s.start) + '</span><span class="s num">' + s.sets.map(x => '<span>' + (x.w ? fmt(x.w) + '×' : '') + (x.r ?? '-') + (x.rpe != null ? '<em class="' + (hi != null && x.rpe > hi ? 'over' : '') + '">@' + fmt(x.rpe) + '</em>' : '') + '</span>').join('') + '</span></div>').join('') : '<span class="sub">Nessuna seduta a log per questo esercizio.</span>') + '</div>' + rpHtml(a, d) + mesoHtml(a);
-  } catch (err) { el.innerHTML = '<div class="rec">' + H + '<span class="sub">Storico non disponibile: ' + esc(err.message) + '</span></div>' + (a.p.rp || a.p.role === 'valvola' ? rpHtml(a, null) : '') + mesoHtml(a); delete el.dataset.ok; }
+    el.innerHTML = ST(d.last.length ? d.last.map(s => '<div class="hrow"><span class="d num">' + dShort(s.start) + '</span><span class="s num">' + s.sets.map(x => '<span>' + (x.w ? fmt(x.w) + '×' : '') + (x.r ?? '-') + (x.rpe != null ? '<em class="' + (hi != null && x.rpe > hi ? 'over' : '') + '">@' + fmt(x.rpe) + '</em>' : '') + '</span>').join('') + '</span></div>').join('') : '<p class="muted" style="margin:0;font-size:14.5px">Nessuna seduta a log per questo esercizio.</p>') + rpHtml(a, d) + mesoHtml(a);
+  } catch (err) { el.innerHTML = ST('<p class="muted" style="margin:0;font-size:14.5px">Storico non disponibile: ' + esc(err.message) + '</p>') + (a.p.rp || a.p.role === 'valvola' ? rpHtml(a, null) : '') + mesoHtml(a); delete el.dataset.ok; }
 }
 function goPage(i) { const pager = $('#pager'); if (!pager) return; i = Math.max(0, Math.min(S.cur.exercises.length - 1, i)); pager.scrollTo({ left: i * pager.clientWidth, behavior: 'smooth' }); }
 function repaintMy(i) { const el = $('#my-' + i); if (!el) return; el.innerHTML = vMy(S.cur.exercises[i], i); autosize(el); paintNav(); }
