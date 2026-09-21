@@ -102,13 +102,19 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .rrow .rkg{text-align:right;font-size:30px;font-weight:750;font-stretch:72%;line-height:1}
 .rrow .rkg small{display:block;font-size:12.5px;font-weight:500;font-stretch:100%;color:var(--ink3);margin-top:4px}
 .empty{padding:34px 0;color:var(--ink2);font-size:15px}
-.empty.big{text-align:left} .empty.big .gor{width:72px;height:72px;color:var(--ink);opacity:.9} .empty.big p{margin:14px 0 0;max-width:34ch}
-.gor{display:block;width:26px;height:26px;fill:currentColor;flex:none}
-.gor.inl{display:inline-block;width:.78em;height:.78em;margin-left:.3em;vertical-align:-.04em;color:var(--accent-ink)}
-.foot.motto{display:flex;align-items:center;gap:10px;color:var(--ink2);margin-top:30px}
+.empty.big{text-align:left} .empty.big .gor{width:150px;color:var(--ink);opacity:.9} .empty.big p{margin:14px 0 0;max-width:34ch}
+.gor{display:block;width:60px;height:auto;aspect-ratio:190/125;fill:currentColor;flex:none;--gbg:var(--bg)}
+.gor .gfar{opacity:.42} .gor .gcut{fill:none;stroke:var(--gbg);stroke-width:2.4;stroke-linecap:round} .gor .geye{fill:var(--gbg)}
+.gor.tbg{width:74px;color:var(--ink);opacity:.22;margin-right:2px}
+.gor.coachg{width:64px;color:var(--accent-ink);--gbg:var(--panel);margin:-10px 0 -2px}
+.foot.motto{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;color:var(--ink2);margin-top:44px;padding-bottom:0;border-bottom:2px solid var(--line)}
+.foot.motto span{padding-bottom:10px}
+.foot.motto .gor{width:128px;color:var(--ink);opacity:.55;margin-bottom:-3px}
 .foot.motto span{font-size:17px;font-weight:800;font-stretch:66%;text-transform:uppercase;letter-spacing:.02em}
+.about{margin-top:34px;display:grid;gap:4px;color:var(--ink2)} .about .gor{width:132px;color:var(--ink);margin-bottom:10px}
+.about b{font-size:24px;line-height:1;font-weight:850;font-stretch:62%;text-transform:uppercase;color:var(--ink)} .about span{font-size:13px;color:var(--ink3)}
 .win{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:var(--accent);color:var(--on-accent);border-radius:var(--r2);padding:16px 18px;margin-bottom:14px}
-.win .gor{width:58px;height:58px}
+.win .gor{width:92px;--gbg:var(--accent)}
 .win b{display:block;font-size:15px;font-weight:600;opacity:.8}
 .win span span{display:block;font-size:27px;line-height:1;font-weight:850;font-stretch:62%;text-transform:uppercase;margin-top:3px}
 .foot{font-size:13px;color:var(--ink3);margin-top:26px}
@@ -146,7 +152,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .scale .trk{position:absolute;left:0;right:0;top:0;height:20px;background:var(--bg3);border-radius:3px;overflow:hidden}
 .scale .trk::after{content:"";position:absolute;inset:0;background:var(--heat);opacity:.2}
 .scale .zone{position:absolute;left:0;top:0;height:20px;background-image:var(--heat);background-repeat:no-repeat;border-radius:3px;transform-origin:left center}
-.scale .zlo{position:absolute;top:-11px;height:5px;background:var(--ink);border-radius:2px}
 
 .scale .stop{position:absolute;top:-6px;width:4px;height:32px;margin-left:-2px;background:var(--ink);border-radius:2px}
 .scale .tick{font-style:normal;position:absolute;top:26px;width:1px;height:6px;background:var(--ink3)}
@@ -158,22 +163,29 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .big .load b{font-size:60px}
 .big small{font-size:14px;color:var(--ink2);margin-left:4px;font-weight:500}
 
-.sets{margin-top:26px}
-.warm{font-size:14px;color:var(--ink3);margin-bottom:10px}
-.set{display:flex;align-items:center;gap:12px;padding:12px 0}
-.set.top{margin:0 -20px;padding:14px 20px;background:var(--accent);color:var(--on-accent)}
-.set .tagc{width:34px;flex:none;font-size:13px;font-weight:700;color:var(--ink3)}
-.set.top .tagc{color:inherit}
-.set .w{flex:1;font-size:34px;font-weight:780;font-stretch:68%;line-height:.9;white-space:nowrap}
-.set .w small{font-size:14px;font-weight:500;font-stretch:100%;margin-left:4px;opacity:.7}
-.rt{display:flex;gap:4px;align-items:center;flex:none}
-.rt i{font-style:normal;min-width:34px;height:34px;padding:0 6px;border-radius:var(--r1);display:grid;place-items:center;font-size:15px;font-weight:600;color:var(--ink3);border:1px solid var(--line);position:relative}
-.rt i.on{background:var(--accent);color:var(--on-accent);border-color:var(--ink);font-weight:800}
-.set.top .rt i{color:rgba(17,18,14,.55);border-color:rgba(17,18,14,.3)}
-.set.top .rt i.on{background:var(--on-accent);color:var(--accent);border-color:var(--on-accent)}
-.rt u{text-decoration:none;color:var(--ink3);font-size:12px;letter-spacing:1px}
-.trigger{margin-top:16px;padding:2px 0 2px 14px;border-left:4px solid var(--accent);font-size:15px;line-height:1.42;color:var(--ink2)}
-.trigger b{color:var(--ink);font-weight:700}
+.sets{margin-top:28px}
+.sh{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 10px}
+.sh b{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800;font-stretch:68%;text-transform:uppercase;letter-spacing:.01em}
+.sh b .ic{width:18px;height:18px;color:var(--ink2)}
+.sh span{font-size:13.5px;color:var(--ink3)}
+.wu{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:8px;margin-bottom:26px}
+.wt{border:1.5px dashed var(--line2,var(--line));border-radius:var(--r2);padding:12px 14px}
+.wt i{font-style:normal;font-size:12.5px;font-weight:700;color:var(--ink3)}
+.wt b{display:block;font-size:34px;font-weight:780;font-stretch:68%;line-height:.95;margin-top:6px;white-space:nowrap}
+.wt b small{font-size:14px;font-weight:500;font-stretch:100%;color:var(--ink2);margin-left:3px}
+.wt span{display:block;font-size:17px;font-weight:700;margin-top:4px;color:var(--ink2)}
+.sg{display:grid;grid-template-columns:1fr auto;align-items:end;gap:10px;padding:16px 18px 6px}
+.sg i{font-style:normal;display:block;font-size:13px;font-weight:700;color:var(--ink3);margin-bottom:6px}
+.sg b{font-size:40px;font-weight:780;font-stretch:66%;line-height:.85;white-space:nowrap}
+.sg b small{font-size:15px;font-weight:500;font-stretch:100%;color:var(--ink2);margin-left:3px}
+.sg b em{font-style:normal;color:var(--ink3);margin-right:7px;font-weight:650}
+.sg .rp{text-align:right} .sg .rp span{display:block;font-size:13.5px;color:var(--ink3);margin-top:7px}
+.sg.main{background:var(--panel);border-radius:var(--r3);padding:20px 18px}
+.sg.main i{color:var(--ink)}
+.sg.main b{font-size:72px;font-weight:800;font-stretch:64%;line-height:.8;letter-spacing:-.02em}
+.sg.main b small{font-size:17px;font-weight:600;letter-spacing:0}
+.sg.main b em{font-size:40px;letter-spacing:0}
+.sg.main .rp b{font-size:52px} .sg.main .rp span{color:var(--ink2);margin-top:8px}
 .callout{display:flex;gap:12px;padding:2px 0 2px 14px;margin-top:18px;font-size:15px;line-height:1.42;border-left:4px solid var(--ink);user-select:text;-webkit-user-select:text}
 .callout .ic{width:20px;height:20px;margin-top:1px}
 .callout.warn{border-color:var(--warn)} .callout.warn .ic{color:var(--warn)}
@@ -181,8 +193,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .blk{margin-top:18px;padding:22px 18px;border-radius:var(--r3);background:var(--panel)}
 .sets+.blk,.sets+div>.blk{margin-top:28px}
 .blk.coach{background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 16%,var(--panel)),var(--panel) 70%)}
-.blk.coach .hd h3{display:flex;align-items:center;gap:9px}
-.blk.coach .hd h3 .ic{width:22px;height:22px}
+.blk.coach>.hd{align-items:flex-end}
 .blk.coach .callout:first-of-type{margin-top:0}
 .blk.coach .callout+.note-full{margin-top:18px}
 .blk.coach .note-full{color:var(--ink);font-size:16px}
@@ -200,8 +211,10 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .chip{min-height:40px;padding:0 14px;border-radius:var(--r1);font-size:15px;font-weight:550;border:1px solid var(--line);color:var(--ink);transition:transform .12s ease,background-color .12s,color .12s}
 .chip:active{transform:scale(.94)}
 .chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:650}
-.chip.body{border-color:color-mix(in srgb,var(--warn) 55%,transparent)}
-.chip.body.on{background:var(--warn);color:var(--on-warn);border-color:var(--warn)}
+.sites{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+.sites>span{font-size:13.5px;color:var(--ink2);font-weight:550;margin-right:2px}
+.chip.site{min-height:36px;padding:0 12px;font-size:14.5px}
+.chip.site.on{background:var(--warn);color:var(--on-warn);border-color:var(--warn)}
 .pain{margin:10px 0 4px;padding:16px 0 0;border-top:1px solid var(--line)}
 .pain .ph{display:flex;align-items:flex-end;gap:10px;margin-bottom:6px}
 .pain .pl{flex:1;font-size:15px;font-weight:700}
@@ -229,16 +242,17 @@ input.in{width:100%;min-height:52px;border-radius:var(--r2);padding:0 14px;backg
 .note-full{font-size:15px;line-height:1.5;color:var(--ink2);user-select:text;-webkit-user-select:text;max-width:60ch}
 .note-full p{margin:0 0 10px}
 .note-full.clamp{max-height:9.2em;overflow:hidden;-webkit-mask-image:linear-gradient(#000 45%,transparent)}
-.recs{display:grid;gap:16px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
-.recs:empty{display:none}
-.rec .k{display:block;font-size:13.5px;color:var(--ink2);font-weight:550;margin-bottom:5px}
+.recs{display:grid;gap:0}
+.rec{padding:16px 0;border-top:1px solid var(--line)} .rec:first-child{padding-top:0;border-top:0} .rec:last-child{padding-bottom:0}
+.rec .k{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2);font-weight:650;margin-bottom:9px}
+.rec .k .ic{width:18px;height:18px;color:var(--accent-ink)}
 .rec b{display:block;font-size:30px;line-height:.95;font-weight:780;font-stretch:68%;color:var(--ink)}
 .rec b small{font-size:13.5px;font-weight:500;font-stretch:100%;color:var(--ink2)}
 .rec b i{display:inline-block;width:14px}
 .rec .sub{display:block;font-size:13.5px;color:var(--ink2);margin-top:5px;line-height:1.35}
 .hrow{display:grid;grid-template-columns:58px 1fr;gap:10px;padding:7px 0;font-size:15px;align-items:baseline}
 .hrow .d{color:var(--ink3);font-size:13.5px}
-.hrow .s{display:flex;flex-wrap:wrap;gap:4px 14px;font-weight:600}
+.hrow .s{display:flex;flex-wrap:wrap;gap:4px 14px;font-weight:600;color:var(--ink)}
 .hrow .s span{white-space:nowrap}
 .hrow .s em{font-style:normal;color:var(--ink3);font-size:13px;font-weight:500;margin-left:3px}
 .hrow .s em.over{color:var(--warn);font-weight:750}
@@ -331,7 +345,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 [data-skin="doodle"] textarea.ta{background-color:var(--bg2)}
 [data-skin="doodle"] *{font-stretch:100%!important}
 [data-skin="doodle"] .mast h1,[data-skin="doodle"] .ex-title,[data-skin="doodle"] .topbar h2,[data-skin="doodle"] .sheet h2,[data-skin="doodle"] .blk>.hd h3,[data-skin="doodle"] .fset h3,[data-skin="doodle"] .arow b,
-[data-skin="doodle"] .rrow .rinfo b,[data-skin="doodle"] .rrow .ltr,[data-skin="doodle"] .rrow .rkg,[data-skin="doodle"] .rpe-top b,[data-skin="doodle"] .big b,[data-skin="doodle"] .set .w,[data-skin="doodle"] .btn,[data-skin="doodle"] .dock button,[data-skin="doodle"] .live b,[data-skin="doodle"] .ask b,[data-skin="doodle"] .notice b,[data-skin="doodle"] .sbar .ttl b{font-family:var(--font-d);font-weight:400;letter-spacing:0;text-transform:none}
+[data-skin="doodle"] .rrow .rinfo b,[data-skin="doodle"] .rrow .ltr,[data-skin="doodle"] .rrow .rkg,[data-skin="doodle"] .rpe-top b,[data-skin="doodle"] .big b,[data-skin="doodle"] .btn,[data-skin="doodle"] .dock button,[data-skin="doodle"] .live b,[data-skin="doodle"] .ask b,[data-skin="doodle"] .notice b,[data-skin="doodle"] .sbar .ttl b{font-family:var(--font-d);font-weight:400;letter-spacing:0;text-transform:none}
 [data-skin="doodle"] .tape{display:block;position:absolute;z-index:2;left:50%;top:-14px;width:100px;height:27px;margin-left:-50px;border-radius:2px;transform:rotate(-2.5deg);background:color-mix(in srgb,var(--c) 70%,rgba(255,255,255,.5));border-left:2px dashed rgba(42,42,53,.3);border-right:2px dashed rgba(42,42,53,.3)}
 
 /* home */
@@ -391,7 +405,6 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 [data-skin="doodle"] .scale .trk{height:0;top:11px;background:none;border-top:2.6px solid var(--ink);border-radius:50%}
 [data-skin="doodle"] .scale .zone{height:24px;top:-1px;opacity:.8;border-radius:var(--sk2);transform:rotate(-.6deg)}
 [data-skin="doodle"] .scale .trk::after{display:none}
-[data-skin="doodle"] .scale .zlo{top:-13px;height:0;background:none;border-top:3px solid var(--ct);border-radius:50%;transform:rotate(-.8deg)}
 
 [data-skin="doodle"] .scale .stop{top:-8px;height:38px;width:4px;background:var(--ink);transform:rotate(5deg)}
 [data-skin="doodle"] .scale .tick{background:var(--ink);top:30px;width:2px}
@@ -405,24 +418,18 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 [data-skin="doodle"] .big .k{font-size:16px;font-weight:400}
 [data-skin="doodle"] .big b{font-size:26px;line-height:1} [data-skin="doodle"] .big .load b{font-size:40px}
 [data-skin="doodle"] .big small{font-size:16px}
-[data-skin="doodle"] .warm{font-size:16px}
-[data-skin="doodle"] .set{border-top:2px dashed var(--line);position:relative}
-[data-skin="doodle"] .set>*{position:relative;z-index:1}
-[data-skin="doodle"] .set:first-of-type,[data-skin="doodle"] .set.top,[data-skin="doodle"] .set.top+.set{border-top:0}
-[data-skin="doodle"] .set.top{background:none;color:var(--ink);margin:0;padding:14px 0}
-[data-skin="doodle"] .set.top::before{content:"";position:absolute;z-index:0;inset:5px -8px;background:var(--c);opacity:.55;border-radius:var(--sk2);transform:rotate(-.7deg)}
-[data-skin="doodle"] .set .tagc{font-family:var(--font-d);font-size:13px;color:var(--ink2)}
-[data-skin="doodle"] .set .w{font-size:26px} [data-skin="doodle"] .set .w small{font-family:var(--font);font-size:16px}
-[data-skin="doodle"] .rt{gap:2px}
-[data-skin="doodle"] .rt i,[data-skin="doodle"] .set.top .rt i{background:none;border:0;font-size:20px;font-weight:400;color:var(--ink2);min-width:32px;height:36px}
-[data-skin="doodle"] .rt i.on,[data-skin="doodle"] .set.top .rt i.on{background:none;color:var(--ink);font-family:var(--font-d);font-size:19px}
-[data-skin="doodle"] .rt i.on::before{content:"";position:absolute;inset:-5px -6px;background:var(--ct);
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60' preserveAspectRatio='none'%3E%3Cpath d='M31 6C15 4 5 16 6 31c1 15 12 24 26 23 14-1 23-12 22-26C53 13 41 4 26 8c-5 1-9 4-12 8' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat;
-  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60' preserveAspectRatio='none'%3E%3Cpath d='M31 6C15 4 5 16 6 31c1 15 12 24 26 23 14-1 23-12 22-26C53 13 41 4 26 8c-5 1-9 4-12 8' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}
-[data-skin="doodle"] .set.top .rt i.on::before{background:var(--ink)}
-[data-skin="doodle"] .rt u{font-size:17px}
-[data-skin="doodle"] .trigger{border:2px dashed var(--ct);border-radius:var(--sk3);padding:12px 16px;font-size:17px;color:var(--ink)}
-[data-skin="doodle"] .trigger b{font-family:var(--font-d);font-weight:400}
+[data-skin="doodle"] .sh b{font-family:var(--font-d);font-weight:400;text-transform:none;font-size:19px}
+[data-skin="doodle"] .sh span{font-size:15.5px}
+[data-skin="doodle"] .wt{border:2px dashed var(--ink2);border-radius:var(--sk2);background:var(--bg2)}
+[data-skin="doodle"] .wt:nth-child(odd){transform:rotate(-.8deg)} [data-skin="doodle"] .wt:nth-child(even){transform:rotate(.7deg)}
+[data-skin="doodle"] .wt b,[data-skin="doodle"] .sg b{font-family:var(--font-d);font-weight:400;letter-spacing:0}
+[data-skin="doodle"] .wt b{font-size:26px} [data-skin="doodle"] .wt b small,[data-skin="doodle"] .sg b small{font-family:var(--font);font-size:16px}
+[data-skin="doodle"] .wt span{font-weight:400;font-size:19px}
+[data-skin="doodle"] .sg i,[data-skin="doodle"] .sg .rp span{font-size:15.5px;font-weight:400}
+[data-skin="doodle"] .sg b{font-size:30px;line-height:1} [data-skin="doodle"] .sg b em{font-family:var(--font)}
+[data-skin="doodle"] .sg.main{background:var(--bg2);border:2px solid var(--ink);border-radius:var(--sk3);box-shadow:3px 4px 0 var(--hard);transform:rotate(-.4deg)}
+[data-skin="doodle"] .sg.main b{font-size:46px;line-height:.95} [data-skin="doodle"] .sg.main .rp b{font-size:38px} [data-skin="doodle"] .sg.main b em{font-size:28px}
+[data-skin="doodle"] .sites>span{font-size:15.5px}
 [data-skin="doodle"] .callout{border:2px solid var(--ink);border-radius:var(--sk2);box-shadow:3px 4px 0 var(--hard);padding:13px 15px;font-size:17px;background:color-mix(in srgb,var(--c) 38%,var(--bg2))}
 [data-skin="doodle"] .callout.warn{background:color-mix(in srgb,var(--warn) 16%,var(--bg2))}
 [data-skin="doodle"] .blk{border:2px solid var(--ink);border-radius:var(--sk2);box-shadow:3px 4px 0 var(--hard);background:var(--bg2);padding:20px 18px;margin-top:24px}
@@ -448,7 +455,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 [data-skin="doodle"] .sl-trk{opacity:.4}
 [data-skin="doodle"] .sl-th{border:3px solid var(--ink);background:var(--bg2);border-radius:58% 42% 52% 48%/46% 54% 44% 56%;box-shadow:2px 3px 0 var(--hard)}
 [data-skin="doodle"] .sl-sc{font-size:15px}
-[data-skin="doodle"] .recs{border-top:2px dashed var(--line)}
+[data-skin="doodle"] .rec{border-top:2px dashed var(--line)} [data-skin="doodle"] .rec:first-child{border-top:0}
 [data-skin="doodle"] .rec .k,[data-skin="doodle"] .rec .sub{font-size:15.5px;font-weight:400}
 [data-skin="doodle"] .rec b{font-family:var(--font-d);font-weight:400;font-size:24px}
 [data-skin="doodle"] .rec b small{font-family:var(--font);font-size:15px}
@@ -497,11 +504,11 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 @media (prefers-reduced-motion:no-preference){
   [data-skin="doodle"] .page.in .mascot{animation:wig 1s .2s cubic-bezier(.3,1.5,.5,1) both}
   [data-skin="doodle"] .page.in .anno{animation:rise .6s 1s both}
-  [data-skin="doodle"] .page.in .rt i.on::before{animation:circ .5s .5s cubic-bezier(.3,1.4,.5,1) both}
   [data-skin="doodle"] .page.in .zone{animation:grow .8s .15s cubic-bezier(.16,1,.3,1) both}
 }
 @keyframes wig{0%{transform:rotate(-20deg) scale(.3);opacity:0}60%{transform:rotate(16deg) scale(1.1)}100%{transform:rotate(9deg) scale(1)}}
 @keyframes circ{from{transform:scale(.2) rotate(-40deg);opacity:0}}
+[data-skin="doodle"] .sites{gap:6px} [data-skin="doodle"] .chip.site{padding:0 9px}
 
 </style>
 </head>
@@ -513,7 +520,7 @@ pre.exp{white-space:pre-wrap;word-break:break-word;font:500 12.5px/1.55 ui-monos
 <div class="toast" id="toast"></div>
 <script>
 'use strict';
-const VERSION = '3.2';
+const VERSION = '3.3';
 const API = 'https://api.hevyapp.com';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -590,18 +597,7 @@ function analyze(ex) {
   const tops = work.filter(s => maxW > 0 ? (s.weight_kg || 0) === maxW : true);
   const rr = (tops[0] && tops[0].rep_range) || (work[0] && work[0].rep_range) || null;
   const range = rr && rr.start != null && rr.end != null ? { lo: rr.start, hi: rr.end } : null;
-  const tarat = p.badges.includes('TARATURA'), deload = p.badges.includes('DELOAD');
-  let trig;
-  const cap = p.hi != null ? fmt(p.hi) : null;
-  if (p.role === 'valvola') trig = '<b>Valvola.</b> Misura, non allena: carico e ripetizioni fissi, si legge su tutti i set' + (cap ? ' entro RPE ' + cap : '') + '. Dolore da 0 a 10, durante e a 2 ore.';
-  else if (p.role === 'attivazione') trig = '<b>Attivazione.</b> Resta leggera: prepara, non affatica.';
-  else if (deload) trig = '<b>Deload.</b> Nessuna progressione oggi: dice solo se sei pronto.';
-  else if (tarat) trig = '<b>Taratura.</b> Oggi si fissano i numeri: segna gli RPE veri, nessun trigger.';
-  else if (range && work.length) {
-    const n = tops.length;
-    trig = '<b>Trigger:</b> ' + range.hi + ' reps ' + (n === 1 ? 'sul top set' : 'su tutti e ' + n + ' i set') + (maxW ? ' a ' + fmt(maxW) + ' kg' : '') + (cap ? ' entro RPE ' + cap : '') + ' → il carico sale di uno scatto.' + (mixed ? ' I back-down non contano.' : '');
-  } else trig = '';
-  return { p, work, warm, maxW, mixed, tops, range, trig };
+  return { p, work, warm, maxW, mixed, tops, range };
 }
 
 /* ---------- demo (sintetica: nessun dato reale nel repo) ---------- */
@@ -628,11 +624,8 @@ const S = {
   view: 'home', key: LS.get('key', ''), routines: LS.get('routines', null), loading: false, err: '',
   cur: LS.get('current', null), archive: LS.get('archive', []), page: 0, scope: {}, openNote: {}, archId: null, anchor: null
 };
-const CHIPS = [
-  { g: 'Esecuzione', body: false, items: ['pulito', 'rep sporca', 'ultima lenta', 'ne avevo ancora', 'al limite'] },
-  { g: 'Corpo', body: true, items: ['spalla', 'gomito'] }
-];
-const BODY = new Set(CHIPS.find(c => c.body).items);
+const CHIPS = ['pulito', 'rep sporca', 'ultima lenta', 'ne avevo ancora', 'al limite'];
+const SITES = ['spalla', 'gomito', 'ginocchio', 'altro'];
 const GYMS = ['Castellanza', 'Cantù', 'Casa', 'Trasferta'];
 const FEEL = ['scarico', 'normale', 'in forma'];
 const FLAGS = ['fretta', 'palestra piena', 'seduta troncata', 'ordine cambiato', 'dormito male'];
@@ -722,13 +715,12 @@ function paintAnchor() { const el = $('#anchor'); if (el && S.anchor) { el.class
 function startSession(r) {
   S.cur = {
     id: uid(), routineId: r.id, title: r.title, demo: !!r.demo, startedAt: new Date().toISOString(), gym: LS.get('gym', GYMS[0]),
-    exercises: (r.exercises || []).slice().sort((a, b) => (a.index || 0) - (b.index || 0)).map(e => ({ tid: e.exercise_template_id, title: e.title, notes: e.notes || '', rest: e.rest_seconds || 0, sets: e.sets || [], my: { chips: {}, pain: null, pain2h: null, text: '' } })),
+    exercises: (r.exercises || []).slice().sort((a, b) => (a.index || 0) - (b.index || 0)).map(e => ({ tid: e.exercise_template_id, title: e.title, notes: e.notes || '', rest: e.rest_seconds || 0, sets: e.sets || [], my: { chips: {}, pain: null, pain2h: null, sites: [], text: '' } })),
     general: { feel: null, flags: [], text: '' }, hevy: null
   };
   S.page = 0; S.scope = {}; S.openNote = {}; saveCur(); go('session');
 }
-const hasNote = e => !!(e.my.text.trim() || e.my.pain != null || Object.values(e.my.chips).some(a => a && a.length));
-const needsPain_unused = (e, a) => a.p.role === 'valvola' || e.my.pain != null || e.my.showPain || Object.values(e.my.chips).some(arr => (arr || []).some(c => BODY.has(c)));
+const hasNote = e => !!(e.my.text.trim() || e.my.pain != null || (e.my.sites || []).length || Object.values(e.my.chips).some(a => a && a.length));
 
 function buildExport(c) {
   const L = [];
@@ -744,7 +736,8 @@ function buildExport(c) {
     if (hv && hv.sets.length) L.push('   Fatto: ' + hv.sets.map(s => (s.w ? fmt(s.w) + '×' : '') + (s.r ?? '-') + (s.rpe != null ? ' @' + fmt(s.rpe) : '')).join(' · '));
     const keys = Object.keys(e.my.chips).filter(k => (e.my.chips[k] || []).length).sort((x, y) => (x === 'all') - (y === 'all') || x.localeCompare(y, 'it', { numeric: true }));
     if (keys.length) L.push('   ' + keys.map(k => (k === 'all' ? 'Esercizio' : 'S' + (+k.slice(1) + 1)) + ': ' + e.my.chips[k].join(', ')).join(' · '));
-    if (e.my.pain != null || a.p.role === 'valvola') L.push('   Dolore durante: ' + (e.my.pain != null ? e.my.pain + '/10' : 'NON RACCOLTO') + (a.p.role === 'valvola' ? ' · a 2 ore: ' + (e.my.pain2h != null ? e.my.pain2h + '/10' : 'da raccogliere') : ''));
+    const sites = (e.my.sites || []).join(', ');
+    if (e.my.pain != null || sites || a.p.role === 'valvola') L.push('   Dolore durante: ' + (e.my.pain != null ? e.my.pain + '/10' : 'NON RACCOLTO') + (sites ? ' · sede: ' + sites : '') + (a.p.role === 'valvola' ? ' · a 2 ore: ' + (e.my.pain2h != null ? e.my.pain2h + '/10' : 'da raccogliere') : ''));
     if (e.my.text.trim()) L.push('   Note: ' + e.my.text.trim().replace(/\n+/g, ' / '));
     if (!hasNote(e) && a.p.role !== 'valvola') L.push('   (nessun appunto)');
   });
@@ -786,8 +779,8 @@ function pendingPain() {
 
 /* ---------- views ---------- */
 /* Icone: Phosphor Icons (MIT), https://phosphoricons.com */
-const PH = {"archive": "<path d=\"M224,44H32A20,20,0,0,0,12,64V88a20,20,0,0,0,16,19.6V192a20,20,0,0,0,20,20H208a20,20,0,0,0,20-20V107.6A20,20,0,0,0,244,88V64A20,20,0,0,0,224,44ZM36,68H220V84H36ZM52,188V108H204v80Zm112-52a12,12,0,0,1-12,12H104a12,12,0,0,1,0-24h48A12,12,0,0,1,164,136Z\"/>", "arrow-right": "<path d=\"M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z\"/>", "arrows-clockwise": "<path d=\"M228,48V96a12,12,0,0,1-12,12H168a12,12,0,0,1,0-24h19l-7.8-7.8a75.55,75.55,0,0,0-53.32-22.26h-.43A75.49,75.49,0,0,0,72.39,75.57,12,12,0,1,1,55.61,58.41a99.38,99.38,0,0,1,69.87-28.47H126A99.42,99.42,0,0,1,196.2,59.23L204,67V48a12,12,0,0,1,24,0ZM183.61,180.43a75.49,75.49,0,0,1-53.09,21.63h-.43A75.55,75.55,0,0,1,76.77,179.8L69,172H88a12,12,0,0,0,0-24H40a12,12,0,0,0-12,12v48a12,12,0,0,0,24,0V189l7.8,7.8A99.42,99.42,0,0,0,130,226.06h.56a99.38,99.38,0,0,0,69.87-28.47,12,12,0,0,0-16.78-17.16Z\"/>", "barbell": "<path d=\"M244,116V88a20,20,0,0,0-20-20H208V64a20,20,0,0,0-20-20H164a20,20,0,0,0-20,20v52H112V64A20,20,0,0,0,92,44H68A20,20,0,0,0,48,64v4H32A20,20,0,0,0,12,88v28a12,12,0,0,0,0,24v28a20,20,0,0,0,20,20H48v4a20,20,0,0,0,20,20H92a20,20,0,0,0,20-20V140h32v52a20,20,0,0,0,20,20h24a20,20,0,0,0,20-20v-4h16a20,20,0,0,0,20-20V140a12,12,0,0,0,0-24ZM36,164V92H48v72Zm52,24H72V68H88Zm96,0H168V68h16Zm36-24H208V92h12Z\"/>", "bell-ringing": "<path d=\"M225.81,74.65A11.86,11.86,0,0,1,220.3,76a12,12,0,0,1-10.67-6.47,90.1,90.1,0,0,0-32-35.38,12,12,0,1,1,12.8-20.29,115.25,115.25,0,0,1,40.54,44.62A12,12,0,0,1,225.81,74.65ZM46.37,69.53a90.1,90.1,0,0,1,32-35.38A12,12,0,1,0,65.6,13.86,115.25,115.25,0,0,0,25.06,58.48a12,12,0,0,0,5.13,16.17A11.86,11.86,0,0,0,35.7,76,12,12,0,0,0,46.37,69.53Zm173.51,98.35A20,20,0,0,1,204,200H171.81a44,44,0,0,1-87.62,0H52a20,20,0,0,1-15.91-32.12c7.17-9.33,15.73-26.62,15.88-55.94A76,76,0,0,1,204,112C204.15,141.26,212.71,158.55,219.88,167.88ZM147.6,200H108.4a20,20,0,0,0,39.2,0Zm48.74-24c-8.16-13-16.19-33.57-16.34-63.94A52,52,0,1,0,76,112c-.15,30.42-8.18,51-16.34,64Z\"/>", "caret-left": "<path d=\"M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z\"/>", "caret-right": "<path d=\"M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z\"/>", "chat-text": "<path d=\"M216,44H40A20,20,0,0,0,20,64V224A19.82,19.82,0,0,0,31.56,242.1a20.14,20.14,0,0,0,8.49,1.9,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a11.93,11.93,0,0,0-7.84,2.92L44,215.23V68H212ZM84,108A12,12,0,0,1,96,96h64a12,12,0,1,1,0,24H96A12,12,0,0,1,84,108Zm0,40a12,12,0,0,1,12-12h64a12,12,0,0,1,0,24H96A12,12,0,0,1,84,148Z\"/>", "check": "<path d=\"M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z\"/>", "copy": "<path d=\"M216,28H88A12,12,0,0,0,76,40V76H40A12,12,0,0,0,28,88V216a12,12,0,0,0,12,12H168a12,12,0,0,0,12-12V180h36a12,12,0,0,0,12-12V40A12,12,0,0,0,216,28ZM156,204H52V100H156Zm48-48H180V88a12,12,0,0,0-12-12H100V52H204Z\"/>", "crosshair": "<path d=\"M232,116h-4.72A100.21,100.21,0,0,0,140,28.72V24a12,12,0,0,0-24,0v4.72A100.21,100.21,0,0,0,28.72,116H24a12,12,0,0,0,0,24h4.72A100.21,100.21,0,0,0,116,227.28V232a12,12,0,0,0,24,0v-4.72A100.21,100.21,0,0,0,227.28,140H232a12,12,0,0,0,0-24Zm-92,87v-3a12,12,0,0,0-24,0v3a76.15,76.15,0,0,1-63-63h3a12,12,0,0,0,0-24H53a76.15,76.15,0,0,1,63-63v3a12,12,0,0,0,24,0V53a76.15,76.15,0,0,1,63,63h-3a12,12,0,0,0,0,24h3A76.15,76.15,0,0,1,140,203ZM128,84a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,84Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,148Z\"/>", "export": "<path d=\"M220,112v96a20,20,0,0,1-20,20H56a20,20,0,0,1-20-20V112A20,20,0,0,1,56,92H76a12,12,0,0,1,0,24H60v88H196V116H180a12,12,0,0,1,0-24h20A20,20,0,0,1,220,112ZM96.49,72.49,116,53v83a12,12,0,0,0,24,0V53l19.51,19.52a12,12,0,1,0,17-17l-40-40a12,12,0,0,0-17,0l-40,40a12,12,0,1,0,17,17Z\"/>", "fire": "<path d=\"M177.62,159.6a52,52,0,0,1-34,34,12.2,12.2,0,0,1-3.6.55,12,12,0,0,1-3.6-23.45,28,28,0,0,0,18.32-18.32,12,12,0,0,1,22.9,7.2ZM220,144a92,92,0,0,1-184,0c0-28.81,11.27-58.18,33.48-87.28a12,12,0,0,1,17.9-1.33L107.07,74.5,127,19.89a12,12,0,0,1,18.94-5.12C168.2,33.25,220,82.85,220,144Zm-24,0c0-41.71-30.61-78.39-52.52-99.29l-20.21,55.4a12,12,0,0,1-19.63,4.5L80.71,82.36C67,103.38,60,124.06,60,144a68,68,0,0,0,136,0Z\"/>", "gear-six": "<path d=\"M128,76a52,52,0,1,0,52,52A52.06,52.06,0,0,0,128,76Zm0,80a28,28,0,1,1,28-28A28,28,0,0,1,128,156Zm113.86-49.57A12,12,0,0,0,236,98.34L208.21,82.49l-.11-31.31a12,12,0,0,0-4.25-9.12,116,116,0,0,0-38-21.41,12,12,0,0,0-9.68.89L128,37.27,99.83,21.53a12,12,0,0,0-9.7-.9,116.06,116.06,0,0,0-38,21.47,12,12,0,0,0-4.24,9.1l-.14,31.34L20,98.35a12,12,0,0,0-5.85,8.11,110.7,110.7,0,0,0,0,43.11A12,12,0,0,0,20,157.66l27.82,15.85.11,31.31a12,12,0,0,0,4.25,9.12,116,116,0,0,0,38,21.41,12,12,0,0,0,9.68-.89L128,218.73l28.14,15.74a12,12,0,0,0,9.7.9,116.06,116.06,0,0,0,38-21.47,12,12,0,0,0,4.24-9.1l.14-31.34,27.81-15.81a12,12,0,0,0,5.85-8.11A110.7,110.7,0,0,0,241.86,106.43Zm-22.63,33.18-26.88,15.28a11.94,11.94,0,0,0-4.55,4.59c-.54,1-1.11,1.93-1.7,2.88a12,12,0,0,0-1.83,6.31L184.13,199a91.83,91.83,0,0,1-21.07,11.87l-27.15-15.19a12,12,0,0,0-5.86-1.53h-.29c-1.14,0-2.3,0-3.44,0a12.08,12.08,0,0,0-6.14,1.51L93,210.82A92.27,92.27,0,0,1,71.88,199l-.11-30.24a12,12,0,0,0-1.83-6.32c-.58-.94-1.16-1.91-1.7-2.88A11.92,11.92,0,0,0,63.7,155L36.8,139.63a86.53,86.53,0,0,1,0-23.24l26.88-15.28a12,12,0,0,0,4.55-4.58c.54-1,1.11-1.94,1.7-2.89a12,12,0,0,0,1.83-6.31L71.87,57A91.83,91.83,0,0,1,92.94,45.17l27.15,15.19a11.92,11.92,0,0,0,6.15,1.52c1.14,0,2.3,0,3.44,0a12.08,12.08,0,0,0,6.14-1.51L163,45.18A92.27,92.27,0,0,1,184.12,57l.11,30.24a12,12,0,0,0,1.83,6.32c.58.94,1.16,1.91,1.7,2.88A11.92,11.92,0,0,0,192.3,101l26.9,15.33A86.53,86.53,0,0,1,219.23,139.61Z\"/>", "lightning": "<path d=\"M219.71,117.38a12,12,0,0,0-7.25-8.52L161.28,88.39l10.59-70.61a12,12,0,0,0-20.64-10l-112,120a12,12,0,0,0,4.31,19.33l51.18,20.47L84.13,238.22a12,12,0,0,0,20.64,10l112-120A12,12,0,0,0,219.71,117.38ZM113.6,203.55l6.27-41.77a12,12,0,0,0-7.41-12.92L68.74,131.37,142.4,52.45l-6.27,41.77a12,12,0,0,0,7.41,12.92l43.72,17.49Z\"/>", "list": "<path d=\"M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM40,76H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24ZM216,180H40a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Z\"/>", "steps": "<path d=\"M252,56a12,12,0,0,1-12,12H196v36a12,12,0,0,1-12,12H140v36a12,12,0,0,1-12,12H84v36a12,12,0,0,1-12,12H16a12,12,0,0,1,0-24H60V152a12,12,0,0,1,12-12h44V104a12,12,0,0,1,12-12h44V56a12,12,0,0,1,12-12h56A12,12,0,0,1,252,56Z\"/>", "traffic-signal": "<path d=\"M216,140H204V84h12a12,12,0,0,0,0-24H204V40a20,20,0,0,0-20-20H72A20,20,0,0,0,52,40V60H40a12,12,0,0,0,0,24H52v56H40a12,12,0,0,0,0,24H52v52a20,20,0,0,0,20,20H184a20,20,0,0,0,20-20V164h12a12,12,0,0,0,0-24Zm-36,72H76V44H180Zm-52-92A32,32,0,1,0,96,88,32,32,0,0,0,128,120Zm0-40a8,8,0,1,1-8,8A8,8,0,0,1,128,80Zm0,120a32,32,0,1,0-32-32A32,32,0,0,0,128,200Zm0-40a8,8,0,1,1-8,8A8,8,0,0,1,128,160Z\"/>", "trend-up": "<path d=\"M244,56v64a12,12,0,0,1-24,0V85l-75.51,75.52a12,12,0,0,1-17,0L96,129,32.49,192.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0L136,135l67-67H168a12,12,0,0,1,0-24h64A12,12,0,0,1,244,56Z\"/>", "trophy": "<path d=\"M232,60H212V48a12,12,0,0,0-12-12H56A12,12,0,0,0,44,48V60H24A20,20,0,0,0,4,80V96a44.05,44.05,0,0,0,44,44h.77A84.18,84.18,0,0,0,116,195.15V212H96a12,12,0,0,0,0,24h64a12,12,0,0,0,0-24H140V195.11c30.94-4.51,56.53-26.2,67-55.11h1a44.05,44.05,0,0,0,44-44V80A20,20,0,0,0,232,60ZM28,96V84H44v28c0,1.21,0,2.41.09,3.61A20,20,0,0,1,28,96Zm160,15.1c0,33.33-26.71,60.65-59.54,60.9A60,60,0,0,1,68,112V60H188ZM228,96a20,20,0,0,1-16.12,19.62c.08-1.5.12-3,.12-4.52V84h16Z\"/>", "warning": "<path d=\"M240.26,186.1,152.81,34.23h0a28.74,28.74,0,0,0-49.62,0L15.74,186.1a27.45,27.45,0,0,0,0,27.71A28.31,28.31,0,0,0,40.55,228h174.9a28.31,28.31,0,0,0,24.79-14.19A27.45,27.45,0,0,0,240.26,186.1Zm-20.8,15.7a4.46,4.46,0,0,1-4,2.2H40.55a4.46,4.46,0,0,1-4-2.2,3.56,3.56,0,0,1,0-3.73L124,46.2a4.77,4.77,0,0,1,8,0l87.44,151.87A3.56,3.56,0,0,1,219.46,201.8ZM116,136V104a12,12,0,0,1,24,0v32a12,12,0,0,1-24,0Zm28,40a16,16,0,1,1-16-16A16,16,0,0,1,144,176Z\"/>"};
-const gorilla = cls => '<svg class="gor' + (cls ? ' ' + cls : '') + '" viewBox="0 0 64 64" aria-hidden="true"><g class="gg"><path fill-rule="evenodd" d="M32 2l8 4c10 2 16 10 16 20 3 1 4 4 3 7s-3 4-5 4c0 10-7 24-22 24S10 47 10 37c-2 0-4-1-5-4s0-6 3-7c0-10 6-18 16-20zM13 25l17 5.5 2-1 2 1L51 25l-1.5 9.5-7.5 1.5c4 4 6 8 6 12 0 7-7 10-16 10s-16-3-16-10c0-4 2-8 6-12L14.5 34.5z"/><circle cx="24" cy="33" r="1.9"/><circle cx="40" cy="33" r="1.9"/><ellipse cx="28" cy="43.5" rx="2.9" ry="2" transform="rotate(-24 28 43.5)"/><ellipse cx="36" cy="43.5" rx="2.9" ry="2" transform="rotate(24 36 43.5)"/><path d="M23 51.5c6-1.6 12-1.6 18 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></g></svg>';
+const PH = {"archive": "<path d=\"M224,44H32A20,20,0,0,0,12,64V88a20,20,0,0,0,16,19.6V192a20,20,0,0,0,20,20H208a20,20,0,0,0,20-20V107.6A20,20,0,0,0,244,88V64A20,20,0,0,0,224,44ZM36,68H220V84H36ZM52,188V108H204v80Zm112-52a12,12,0,0,1-12,12H104a12,12,0,0,1,0-24h48A12,12,0,0,1,164,136Z\"/>", "arrow-right": "<path d=\"M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z\"/>", "arrows-clockwise": "<path d=\"M228,48V96a12,12,0,0,1-12,12H168a12,12,0,0,1,0-24h19l-7.8-7.8a75.55,75.55,0,0,0-53.32-22.26h-.43A75.49,75.49,0,0,0,72.39,75.57,12,12,0,1,1,55.61,58.41a99.38,99.38,0,0,1,69.87-28.47H126A99.42,99.42,0,0,1,196.2,59.23L204,67V48a12,12,0,0,1,24,0ZM183.61,180.43a75.49,75.49,0,0,1-53.09,21.63h-.43A75.55,75.55,0,0,1,76.77,179.8L69,172H88a12,12,0,0,0,0-24H40a12,12,0,0,0-12,12v48a12,12,0,0,0,24,0V189l7.8,7.8A99.42,99.42,0,0,0,130,226.06h.56a99.38,99.38,0,0,0,69.87-28.47,12,12,0,0,0-16.78-17.16Z\"/>", "barbell": "<path d=\"M244,116V88a20,20,0,0,0-20-20H208V64a20,20,0,0,0-20-20H164a20,20,0,0,0-20,20v52H112V64A20,20,0,0,0,92,44H68A20,20,0,0,0,48,64v4H32A20,20,0,0,0,12,88v28a12,12,0,0,0,0,24v28a20,20,0,0,0,20,20H48v4a20,20,0,0,0,20,20H92a20,20,0,0,0,20-20V140h32v52a20,20,0,0,0,20,20h24a20,20,0,0,0,20-20v-4h16a20,20,0,0,0,20-20V140a12,12,0,0,0,0-24ZM36,164V92H48v72Zm52,24H72V68H88Zm96,0H168V68h16Zm36-24H208V92h12Z\"/>", "bell-ringing": "<path d=\"M225.81,74.65A11.86,11.86,0,0,1,220.3,76a12,12,0,0,1-10.67-6.47,90.1,90.1,0,0,0-32-35.38,12,12,0,1,1,12.8-20.29,115.25,115.25,0,0,1,40.54,44.62A12,12,0,0,1,225.81,74.65ZM46.37,69.53a90.1,90.1,0,0,1,32-35.38A12,12,0,1,0,65.6,13.86,115.25,115.25,0,0,0,25.06,58.48a12,12,0,0,0,5.13,16.17A11.86,11.86,0,0,0,35.7,76,12,12,0,0,0,46.37,69.53Zm173.51,98.35A20,20,0,0,1,204,200H171.81a44,44,0,0,1-87.62,0H52a20,20,0,0,1-15.91-32.12c7.17-9.33,15.73-26.62,15.88-55.94A76,76,0,0,1,204,112C204.15,141.26,212.71,158.55,219.88,167.88ZM147.6,200H108.4a20,20,0,0,0,39.2,0Zm48.74-24c-8.16-13-16.19-33.57-16.34-63.94A52,52,0,1,0,76,112c-.15,30.42-8.18,51-16.34,64Z\"/>", "caret-left": "<path d=\"M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z\"/>", "caret-right": "<path d=\"M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z\"/>", "check": "<path d=\"M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z\"/>", "clock-counter-clockwise": "<path d=\"M140,80v41.21l34.17,20.5a12,12,0,1,1-12.34,20.58l-40-24A12,12,0,0,1,116,128V80a12,12,0,0,1,24,0ZM128,28A99.38,99.38,0,0,0,57.24,57.34c-4.69,4.74-9,9.37-13.24,14V64a12,12,0,0,0-24,0v40a12,12,0,0,0,12,12H72a12,12,0,0,0,0-24H57.77C63,86,68.37,80.22,74.26,74.26a76,76,0,1,1,1.58,109,12,12,0,0,0-16.48,17.46A100,100,0,1,0,128,28Z\"/>", "copy": "<path d=\"M216,28H88A12,12,0,0,0,76,40V76H40A12,12,0,0,0,28,88V216a12,12,0,0,0,12,12H168a12,12,0,0,0,12-12V180h36a12,12,0,0,0,12-12V40A12,12,0,0,0,216,28ZM156,204H52V100H156Zm48-48H180V88a12,12,0,0,0-12-12H100V52H204Z\"/>", "crosshair": "<path d=\"M232,116h-4.72A100.21,100.21,0,0,0,140,28.72V24a12,12,0,0,0-24,0v4.72A100.21,100.21,0,0,0,28.72,116H24a12,12,0,0,0,0,24h4.72A100.21,100.21,0,0,0,116,227.28V232a12,12,0,0,0,24,0v-4.72A100.21,100.21,0,0,0,227.28,140H232a12,12,0,0,0,0-24Zm-92,87v-3a12,12,0,0,0-24,0v3a76.15,76.15,0,0,1-63-63h3a12,12,0,0,0,0-24H53a76.15,76.15,0,0,1,63-63v3a12,12,0,0,0,24,0V53a76.15,76.15,0,0,1,63,63h-3a12,12,0,0,0,0,24h3A76.15,76.15,0,0,1,140,203ZM128,84a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,84Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,148Z\"/>", "export": "<path d=\"M220,112v96a20,20,0,0,1-20,20H56a20,20,0,0,1-20-20V112A20,20,0,0,1,56,92H76a12,12,0,0,1,0,24H60v88H196V116H180a12,12,0,0,1,0-24h20A20,20,0,0,1,220,112ZM96.49,72.49,116,53v83a12,12,0,0,0,24,0V53l19.51,19.52a12,12,0,1,0,17-17l-40-40a12,12,0,0,0-17,0l-40,40a12,12,0,1,0,17,17Z\"/>", "fire": "<path d=\"M177.62,159.6a52,52,0,0,1-34,34,12.2,12.2,0,0,1-3.6.55,12,12,0,0,1-3.6-23.45,28,28,0,0,0,18.32-18.32,12,12,0,0,1,22.9,7.2ZM220,144a92,92,0,0,1-184,0c0-28.81,11.27-58.18,33.48-87.28a12,12,0,0,1,17.9-1.33L107.07,74.5,127,19.89a12,12,0,0,1,18.94-5.12C168.2,33.25,220,82.85,220,144Zm-24,0c0-41.71-30.61-78.39-52.52-99.29l-20.21,55.4a12,12,0,0,1-19.63,4.5L80.71,82.36C67,103.38,60,124.06,60,144a68,68,0,0,0,136,0Z\"/>", "fire-simple": "<path d=\"M145.93,14.77A12,12,0,0,0,127,19.89L107.07,74.5,87.38,55.39a12,12,0,0,0-17.9,1.33C47.27,85.82,36,115.19,36,144a92,92,0,0,0,184,0C220,82.85,168.2,33.25,145.93,14.77ZM128,212a68.07,68.07,0,0,1-68-68c0-19.94,7-40.62,20.71-61.64l22.93,22.25a12,12,0,0,0,19.63-4.5l20.21-55.4C165.39,65.61,196,102.29,196,144A68.07,68.07,0,0,1,128,212Z\"/>", "gear-six": "<path d=\"M128,76a52,52,0,1,0,52,52A52.06,52.06,0,0,0,128,76Zm0,80a28,28,0,1,1,28-28A28,28,0,0,1,128,156Zm113.86-49.57A12,12,0,0,0,236,98.34L208.21,82.49l-.11-31.31a12,12,0,0,0-4.25-9.12,116,116,0,0,0-38-21.41,12,12,0,0,0-9.68.89L128,37.27,99.83,21.53a12,12,0,0,0-9.7-.9,116.06,116.06,0,0,0-38,21.47,12,12,0,0,0-4.24,9.1l-.14,31.34L20,98.35a12,12,0,0,0-5.85,8.11,110.7,110.7,0,0,0,0,43.11A12,12,0,0,0,20,157.66l27.82,15.85.11,31.31a12,12,0,0,0,4.25,9.12,116,116,0,0,0,38,21.41,12,12,0,0,0,9.68-.89L128,218.73l28.14,15.74a12,12,0,0,0,9.7.9,116.06,116.06,0,0,0,38-21.47,12,12,0,0,0,4.24-9.1l.14-31.34,27.81-15.81a12,12,0,0,0,5.85-8.11A110.7,110.7,0,0,0,241.86,106.43Zm-22.63,33.18-26.88,15.28a11.94,11.94,0,0,0-4.55,4.59c-.54,1-1.11,1.93-1.7,2.88a12,12,0,0,0-1.83,6.31L184.13,199a91.83,91.83,0,0,1-21.07,11.87l-27.15-15.19a12,12,0,0,0-5.86-1.53h-.29c-1.14,0-2.3,0-3.44,0a12.08,12.08,0,0,0-6.14,1.51L93,210.82A92.27,92.27,0,0,1,71.88,199l-.11-30.24a12,12,0,0,0-1.83-6.32c-.58-.94-1.16-1.91-1.7-2.88A11.92,11.92,0,0,0,63.7,155L36.8,139.63a86.53,86.53,0,0,1,0-23.24l26.88-15.28a12,12,0,0,0,4.55-4.58c.54-1,1.11-1.94,1.7-2.89a12,12,0,0,0,1.83-6.31L71.87,57A91.83,91.83,0,0,1,92.94,45.17l27.15,15.19a11.92,11.92,0,0,0,6.15,1.52c1.14,0,2.3,0,3.44,0a12.08,12.08,0,0,0,6.14-1.51L163,45.18A92.27,92.27,0,0,1,184.12,57l.11,30.24a12,12,0,0,0,1.83,6.32c.58.94,1.16,1.91,1.7,2.88A11.92,11.92,0,0,0,192.3,101l26.9,15.33A86.53,86.53,0,0,1,219.23,139.61Z\"/>", "lightning": "<path d=\"M219.71,117.38a12,12,0,0,0-7.25-8.52L161.28,88.39l10.59-70.61a12,12,0,0,0-20.64-10l-112,120a12,12,0,0,0,4.31,19.33l51.18,20.47L84.13,238.22a12,12,0,0,0,20.64,10l112-120A12,12,0,0,0,219.71,117.38ZM113.6,203.55l6.27-41.77a12,12,0,0,0-7.41-12.92L68.74,131.37,142.4,52.45l-6.27,41.77a12,12,0,0,0,7.41,12.92l43.72,17.49Z\"/>", "list": "<path d=\"M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM40,76H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24ZM216,180H40a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Z\"/>", "medal": "<path d=\"M220,96A92,92,0,1,0,68,165.69V240a12,12,0,0,0,17.37,10.73L128,229.42l42.64,21.31A12,12,0,0,0,188,240V165.69A91.86,91.86,0,0,0,220,96ZM60,96a68,68,0,1,1,68,68A68.07,68.07,0,0,1,60,96ZM164,220.59l-30.64-15.32a12,12,0,0,0-10.74,0L92,220.58V180.66a92,92,0,0,0,72,0ZM128,148A52,52,0,1,0,76,96,52.06,52.06,0,0,0,128,148Zm0-80a28,28,0,1,1-28,28A28,28,0,0,1,128,68Z\"/>", "steps": "<path d=\"M252,56a12,12,0,0,1-12,12H196v36a12,12,0,0,1-12,12H140v36a12,12,0,0,1-12,12H84v36a12,12,0,0,1-12,12H16a12,12,0,0,1,0-24H60V152a12,12,0,0,1,12-12h44V104a12,12,0,0,1,12-12h44V56a12,12,0,0,1,12-12h56A12,12,0,0,1,252,56Z\"/>", "target": "<path d=\"M229.26,90.4a108,108,0,0,1-177.63,114A108,108,0,0,1,195.41,43.63l20.1-20.11a12,12,0,0,1,17,17l-96,96a12,12,0,1,1-17-17l24-24a36,36,0,1,0,19.76,39.65,12,12,0,0,1,23.53,4.74,60,60,0,1,1-25.73-62L178.3,60.74a84,84,0,1,0,28.46,38,12,12,0,1,1,22.5-8.35Z\"/>", "traffic-signal": "<path d=\"M216,140H204V84h12a12,12,0,0,0,0-24H204V40a20,20,0,0,0-20-20H72A20,20,0,0,0,52,40V60H40a12,12,0,0,0,0,24H52v56H40a12,12,0,0,0,0,24H52v52a20,20,0,0,0,20,20H184a20,20,0,0,0,20-20V164h12a12,12,0,0,0,0-24Zm-36,72H76V44H180Zm-52-92A32,32,0,1,0,96,88,32,32,0,0,0,128,120Zm0-40a8,8,0,1,1-8,8A8,8,0,0,1,128,80Zm0,120a32,32,0,1,0-32-32A32,32,0,0,0,128,200Zm0-40a8,8,0,1,1-8,8A8,8,0,0,1,128,160Z\"/>", "trend-up": "<path d=\"M244,56v64a12,12,0,0,1-24,0V85l-75.51,75.52a12,12,0,0,1-17,0L96,129,32.49,192.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0L136,135l67-67H168a12,12,0,0,1,0-24h64A12,12,0,0,1,244,56Z\"/>", "trophy": "<path d=\"M232,60H212V48a12,12,0,0,0-12-12H56A12,12,0,0,0,44,48V60H24A20,20,0,0,0,4,80V96a44.05,44.05,0,0,0,44,44h.77A84.18,84.18,0,0,0,116,195.15V212H96a12,12,0,0,0,0,24h64a12,12,0,0,0,0-24H140V195.11c30.94-4.51,56.53-26.2,67-55.11h1a44.05,44.05,0,0,0,44-44V80A20,20,0,0,0,232,60ZM28,96V84H44v28c0,1.21,0,2.41.09,3.61A20,20,0,0,1,28,96Zm160,15.1c0,33.33-26.71,60.65-59.54,60.9A60,60,0,0,1,68,112V60H188ZM228,96a20,20,0,0,1-16.12,19.62c.08-1.5.12-3,.12-4.52V84h16Z\"/>", "warning": "<path d=\"M240.26,186.1,152.81,34.23h0a28.74,28.74,0,0,0-49.62,0L15.74,186.1a27.45,27.45,0,0,0,0,27.71A28.31,28.31,0,0,0,40.55,228h174.9a28.31,28.31,0,0,0,24.79-14.19A27.45,27.45,0,0,0,240.26,186.1Zm-20.8,15.7a4.46,4.46,0,0,1-4,2.2H40.55a4.46,4.46,0,0,1-4-2.2,3.56,3.56,0,0,1,0-3.73L124,46.2a4.77,4.77,0,0,1,8,0l87.44,151.87A3.56,3.56,0,0,1,219.46,201.8ZM116,136V104a12,12,0,0,1,24,0v32a12,12,0,0,1-24,0Zm28,40a16,16,0,1,1-16-16A16,16,0,0,1,144,176Z\"/>"};
+const gorilla = cls => '<svg class="gor' + (cls ? ' ' + cls : '') + '" viewBox="0 0 190 125" aria-hidden="true"><g class="gg"><g class="gfar"><path d="M134 72C146 84 158 98 166 112C168 115 171 117 173 118C175 120 174 121 172 121L155 121C152 121 151 119 150 117C144 104 134 92 124 82Z"/><path d="M74 88C80 98 88 106 96 113C99 116 101 118 100 121L82 121C79 121 78 119 77 117C72 108 66 100 62 92Z"/></g><path d="M34 121C30 121 29 117 31 114C27 106 21 98 19 88C16 72 23 58 37 50C57 38 80 28 100 22C106 17 114 15 121 18C125 12 134 8 143 10C152 11 159 17 161 26C165 27 167 31 165 35C171 38 175 45 174 52C173 60 165 64 157 62C153 66 148 68 143 68C147 78 148 90 148 100C148 108 151 113 155 116C158 118 157 121 154 121L135 121C132 121 131 119 131 116C130 104 126 93 121 84C108 92 88 94 70 90C64 96 62 104 64 111C66 115 69 118 68 121Z"/><path class="gcut" d="M152 27L163 30"/><circle class="geye" cx="158" cy="34" r="1.8"/></g></svg>';
 const MOTTO = 'Scimmie. Unite. Forti.';
 const ic = (n, cls) => '<svg class="ic' + (cls ? ' ' + cls : '') + '" viewBox="0 0 256 256" aria-hidden="true">' + (PH[n] || '') + '</svg>';
 const ROLE_IC = { grande: 'trophy', costruzione: 'steps', finisher: 'fire', valvola: 'traffic-signal', attivazione: 'lightning', libero: 'barbell' };
@@ -811,7 +804,7 @@ function vHome() {
   const now = new Date(), R = S.routines, list = (R && R.list) || [], pend = pendingPain();
   let k = 0; const I = () => ' style="--i:' + (k++) + '"';
   let h = '<div class="view enter"><header class="mast"' + I() + '><div><h1>Spotter</h1><p class="date">' + GIORNI[now.getDay()] + ' ' + dLong(now) + '</p></div>' +
-    '<div class="acts"><button class="iconbtn" data-act="archive" aria-label="Archivio">' + ic('archive') + '</button><button class="iconbtn" data-act="settings" aria-label="Impostazioni">' + ic('gear-six') + '</button></div></header>';
+    '<div class="acts"><button class="iconbtn" data-act="archive" aria-label="Archivio">' + ic('archive') + '</button><button class="iconbtn" data-act="settings" aria-label="Impostazioni">' + ic('gear-six') + '</button></div>' + '</header>';
   if (S.cur) h += '<button class="live" data-act="resume"' + I() + '><span class="pulse"></span><span style="flex:1;opacity:1"><b>Seduta in corso</b><span>' + esc(monogram(S.cur.title).n) + ', iniziata alle ' + hm(S.cur.startedAt) + '</span></span>' + ic('arrow-right') + '</button>';
   pend.forEach((p, q) => { h += '<div class="ask" style="' + rs('valvola') + ';--i:' + (k++) + '"><b>Dolore a 2 ore</b><p>' + esc(p.e.title) + ', ' + esc(monogram(p.c.title).n) + ' del ' + dShort(p.c.startedAt) + '</p>' + dotsHtml('pain2h', null, 'data-k="' + q + '"') + '</div>'; });
   if (S.justClosed) h += '<button class="win" data-act="dismisswin"' + I() + '>' + gorilla() + '<span><b>Seduta archiviata</b><span>' + MOTTO + '</span></span></button>';
@@ -823,11 +816,11 @@ function vHome() {
   list.forEach((r, i) => {
     const exs = (r.exercises || []).slice().sort((a, b) => (a.index || 0) - (b.index || 0)), m = monogram(r.title);
     const an = exs.map(analyze), big = an.findIndex(a => a.p.role === 'grande'), nsets = exs.reduce((n, e) => n + (e.sets || []).length, 0);
-    h += '<button class="rrow" style="' + rs(CYCLE[i % CYCLE.length]) + ';--i:' + (k++) + '" data-act="start" data-i="' + i + '"><span class="tape"></span><span class="ltr">' + esc(m.l) + '</span><span class="rinfo"><b>' + esc(m.n) + (/scimmi/i.test(m.n) ? gorilla('inl') : '') + '</b>' +
+    h += '<button class="rrow" style="' + rs(CYCLE[i % CYCLE.length]) + ';--i:' + (k++) + '" data-act="start" data-i="' + i + '"><span class="tape"></span><span class="ltr">' + esc(m.l) + '</span><span class="rinfo"><b>' + esc(m.n) + '</b>' +
       (big >= 0 ? '<span>' + esc(exs[big].title) + '</span>' : '') + '<span>' + exs.length + ' esercizi, ' + nsets + ' set</span></span>' +
       (big >= 0 && an[big].maxW ? '<span class="rkg num">' + fmt(an[big].maxW) + '<small>kg</small></span>' : '<span></span>') + '</button>';
   });
-  return h + '<p class="foot motto">' + gorilla() + '<span>' + MOTTO + '</span></p></div>';
+  return h + '<div class="foot motto"><span>' + MOTTO + '</span>' + (S.justClosed ? '' : gorilla()) + '</div></div>';
 }
 
 /* --- pezzi disegnati: usati solo dallo stile Doodle --- */
@@ -852,16 +845,32 @@ function scale(p) {
   let t = ''; for (let v = 6; v <= 10.001; v += 0.5) { const maj = Math.abs(v - Math.round(v)) < 0.01; t += '<i class="tick' + (maj ? ' maj' : '') + '" style="left:' + pos(v).toFixed(2) + '%">' + (maj ? '<u class="num">' + Math.round(v) + '</u>' : '') + '</i>'; }
   const say = p.role === 'valvola' ? 'non oltre!' : p.role === 'attivazione' ? 'leggero!' : p.lo != null ? 'resta qui' : 'tetto', right = pos(p.hi) > 55;
   return '<div class="scale"><div class="trk"></div><div class="zone" style="width:' + w.toFixed(2) + '%;background-size:' + (10000 / w).toFixed(1) + '% 100%"></div>' +
-    (p.lo != null ? '<div class="zlo" style="left:' + pos(p.lo).toFixed(2) + '%;width:' + (pos(p.hi) - pos(p.lo)).toFixed(2) + '%"></div>' : '') +
     '<div class="stop" style="left:' + pos(p.hi).toFixed(2) + '%"></div>' + t +
     '<div class="anno' + (right ? ' r' : '') + '" style="left:' + pos(p.hi).toFixed(2) + '%"><span>' + say + '</span><svg viewBox="0 0 40 34"><g filter="url(#wob)"><path d="' + (right ? 'M4 4C18 4 30 12 33 28' : 'M36 4C22 4 10 12 7 28') + '"/><path d="' + (right ? 'M25 22l8 7 4-10' : 'M15 22l-8 7-4-10') + '"/></g></svg></div></div>';
 }
-function track(rr, target) {
-  if (!rr) return '<span class="rt"><i class="on num">' + (target ?? '-') + '</i></span>';
-  const lo = rr.start, hi = rr.end; let h = '<span class="rt">';
-  if (hi - lo <= 3) for (let n = lo; n <= hi; n++) h += '<i class="num' + (n === target ? ' on' : '') + '">' + n + '</i>';
-  else h += '<i class="num' + (target === lo ? ' on' : '') + '">' + lo + '</i><u>···</u>' + (target != null && target > lo && target < hi ? '<i class="num on">' + target + '</i><u>···</u>' : '') + '<i class="num' + (target === hi ? ' on' : '') + '">' + hi + '</i>';
-  return h + '</span>';
+function setsHtml(a) {
+  const kg = s => s.weight_kg ? fmt(s.weight_kg) + '<small>kg</small>' : 'corpo';
+  const rrOf = s => s.rep_range && s.rep_range.start != null && s.rep_range.end != null ? s.rep_range : null;
+  let h = '<div class="sets">';
+  if (a.warm.length) {
+    const n = a.warm.length, cols = n <= 3 ? n : n === 4 ? 2 : 3;
+    h += '<div class="sh"><b>' + ic('fire-simple') + 'Avvicinamento</b><span>' + n + ' set, non contano</span></div><div class="wu" style="--n:' + cols + '">' +
+      a.warm.map((s, k) => '<div class="wt"><i class="num">' + (k + 1) + '</i><b class="num">' + kg(s) + '</b><span class="num">× ' + (s.reps ?? '-') + '</span></div>').join('') + '</div>';
+  }
+  /* set di lavoro: quelli identici e consecutivi si raggruppano */
+  const G = [];
+  a.work.forEach((s, k) => {
+    const rr = rrOf(s), key = [s.weight_kg || 0, s.reps ?? '', rr ? rr.start + '-' + rr.end : ''].join('|'), g = G[G.length - 1];
+    if (g && g.key === key) { g.n++; g.to = k + 1; } else G.push({ key, s, rr, n: 1, from: k + 1, to: k + 1, top: a.mixed && (s.weight_kg || 0) === a.maxW });
+  });
+  if (a.work.length) h += '<div class="sh"><b>' + ic('barbell') + 'Lavoro</b><span>' + a.work.length + ' set</span></div>';
+  G.forEach((g, q) => {
+    const main = a.mixed ? g.top : q === 0;
+    const label = a.mixed ? (g.top ? 'Top set' : 'Back-down') : (G.length === 1 ? 'Set di lavoro' : (g.n > 1 ? 'Set ' + g.from + '-' + g.to : 'Set ' + g.from));
+    h += '<div class="sg' + (main ? ' main' : '') + '"><div><i>' + label + '</i><b class="num">' + (g.n > 1 ? '<em>' + g.n + ' ×</em>' : '') + kg(g.s) + '</b></div>' +
+      '<div class="rp"><b class="num">' + (g.s.reps ?? (g.rr ? g.rr.end : '-')) + '</b><span>' + (g.rr ? 'reps, range ' + g.rr.start + '-' + g.rr.end : 'reps fisse') + '</span></div></div>';
+  });
+  return h + '</div>';
 }
 
 function vSession() {
@@ -882,20 +891,17 @@ function vPage(e, i) {
     '<div><span class="k">' + (a.range ? 'Range' : 'Reps fisse') + '</span><b class="num">' + (a.range ? rng(a.range.lo, a.range.hi) : ((a.work[0] && a.work[0].reps) ?? '-')) + '</b></div>' +
     '<div><span class="k">Recupero</span><b class="num">' + (e.rest ? mmss(e.rest) : '-') + '</b></div></div></div>';
 
-  h += '<div class="sets">' + (a.warm.length ? '<div class="warm num">Riscaldamento: ' + a.warm.map(s => (s.weight_kg ? fmt(s.weight_kg) + '×' : '') + (s.reps ?? '-')).join(', ') + '</div>' : '') + a.work.map((s, k) => {
-    const top = a.mixed && (s.weight_kg || 0) === a.maxW, rr = s.rep_range && s.rep_range.start != null && s.rep_range.end != null ? s.rep_range : null;
-    return '<div class="set' + (top ? ' top' : '') + '"><span class="tagc">' + (a.mixed ? (top ? 'Top' : 'BD') : 'S' + (k + 1)) + '</span><span class="w num">' + (s.weight_kg ? fmt(s.weight_kg) + '<small>kg</small>' : 'corpo') + '</span>' + track(rr, s.reps) + '</div>';
-  }).join('') + (a.trig ? '<div class="trigger">' + a.trig + '</div>' : '') + '</div>';
+  h += setsHtml(a);
 
   const calls = p.lines.filter(l => l.type === 'warn' || l.type === 'up' || l.type === 'target'), txt = p.lines.filter(l => l.type === 'text');
   if (calls.length || txt.length) {
     const long = txt.map(l => l.text).join(' ').length > 320;
-    h += '<div class="blk coach"><div class="hd"><h3>' + ic('chat-text') + 'Coach</h3></div>' +
+    h += '<div class="blk coach"><div class="hd"><h3>Coach</h3>' + gorilla('coachg') + '</div>' +
       calls.map(l => '<div class="callout ' + l.type + '">' + ic(l.type === 'warn' ? 'warning' : l.type === 'up' ? 'trend-up' : 'crosshair') + '<span>' + esc(l.text) + '</span></div>').join('') +
       (txt.length ? '<div class="note-full' + (long && !S.openNote[i] ? ' clamp' : '') + '" id="nf-' + i + '">' + txt.map(l => '<p>' + esc(l.text) + '</p>').join('') + '</div>' + (long ? '<button class="more" data-act="morenote" data-i="' + i + '">' + (S.openNote[i] ? 'Riduci' : 'Leggi tutto') + '</button>' : '') : '') + '</div>';
   }
   h += '<div id="my-' + i + '">' + vMy(e, i, a) + '</div>';
-  h += '<div class="blk"><div class="hd"><h3>Storico</h3><span>solo set di lavoro</span></div><div id="hist-' + i + '" class="muted" style="font-size:14.5px">Carico lo storico.</div></div>';
+  h += '<div class="blk"><div class="hd"><h3>Storico</h3><span>solo set di lavoro</span></div><div id="hist-' + i + '" class="recs"><p class="muted" style="margin:0;font-size:14.5px">Carico lo storico.</p></div></div>';
   return h + '</section>';
 }
 function slider(kind, i, v) {
@@ -907,9 +913,11 @@ function vMy(e, i, a) {
   const cur = e.my.chips[sc] || [], valve = a.p.role === 'valvola';
   let h = '<div class="blk"><div class="hd"><h3>Appunti</h3>' + (hasNote(e) ? '<span class="saved">salvato</span>' : '<span>si salvano da soli</span>') + '</div>';
   h += '<div class="scope">' + a.work.map((s, k) => '<button class="' + (sc === 's' + k ? 'on' : '') + '" data-act="scope" data-i="' + i + '" data-s="s' + k + '">Set ' + (k + 1) + (a.mixed ? ((s.weight_kg || 0) === a.maxW ? ' top' : ' bd') : '') + ((e.my.chips['s' + k] || []).length ? '<span class="dot"></span>' : '') + '</button>').join('') + '</div>';
-  h += '<div class="chips">' + CHIPS.map(g => g.items.map(c => '<button class="chip' + (g.body ? ' body' : '') + (cur.includes(c) ? ' on' : '') + '" data-act="chip" data-i="' + i + '" data-c="' + esc(c) + '">' + esc(c) + '</button>').join('')).join('') + '</div>';
+  h += '<div class="chips">' + CHIPS.map(c => '<button class="chip' + (cur.includes(c) ? ' on' : '') + '" data-act="chip" data-i="' + i + '" data-c="' + esc(c) + '">' + esc(c) + '</button>').join('') + '</div>';
+  const sites = e.my.sites || [];
   h += '<div class="pain"><div class="ph"><span class="pl">Dolore durante' + (valve ? '<em>sulle valvole si segna sempre, anche zero</em>' : '') + '</span>' + face(e.my.pain) + '<b class="pv num" id="pv-' + i + '">' + (e.my.pain == null ? '-' : e.my.pain) + '<small>/10</small></b></div>' + slider('pain', i, e.my.pain) +
-    (e.my.pain != null ? '<button class="more" data-act="painclear" data-i="' + i + '">Togli il dato</button>' : '') + '</div>';
+    '<div class="sites" role="group" aria-label="Sede del dolore">' + SITES.map(x => '<button class="chip site' + (sites.includes(x) ? ' on' : '') + '" data-act="site" data-i="' + i + '" data-c="' + x + '">' + x + '</button>').join('') + '</div>' +
+    (e.my.pain != null || sites.length ? '<button class="more" data-act="painclear" data-i="' + i + '">Togli il dato</button>' : '') + '</div>';
   h += '<div class="field"><label class="lbl" for="ta-' + i + '">Note</label><textarea class="ta" id="ta-' + i + '" data-in="text" data-i="' + i + '" placeholder="Sensazioni, tecnica, cosa cambieresti">' + esc(e.my.text) + '</textarea></div></div>';
   return h;
 }
@@ -929,30 +937,31 @@ function paintNav() {
   $('#bnextw').innerHTML = i === n - 1 ? '<button class="dnext" data-act="toclose">Chiudi seduta</button>' : '<button class="dnext" data-act="next">Avanti' + ic('caret-right') + '</button>';
   loadHist(i); if (i + 1 < n) loadHist(i + 1);
 }
+const recHead = (icon, label) => '<span class="k">' + ic(icon) + label + '</span>';
 function mesoHtml(a) {
   const m = a.p.meso; if (!m) return '';
   let st = '';
   if (a.maxW && m.target != null && a.maxW >= m.target) st = 'target centrato';
   else if (a.maxW && m.min != null && a.maxW >= m.min) st = 'minimo centrato' + (m.target != null ? ', al target mancano ' + fmt(m.target - a.maxW) + ' kg' : '');
   else if (a.maxW && m.min != null) st = 'al minimo mancano ' + fmt(m.min - a.maxW) + ' kg';
-  return '<div class="rec"><span class="k">Target del mesociclo</span><b class="num">' + (m.min != null ? '<small>minimo</small> ' + fmt(m.min) : '') + (m.min != null && m.target != null ? '<i></i>' : '') + (m.target != null ? '<small>target</small> ' + fmt(m.target) : '') + (m.min == null && m.target == null ? esc(m.text) : ' <small>kg</small>') + '</b>' + (st ? '<span class="sub">Oggi sei a ' + fmt(a.maxW) + ' kg: ' + st + '.</span>' : '') + '</div>';
+  return '<div class="rec">' + recHead('target', 'Target del mesociclo') + '<b class="num">' + (m.min != null ? '<small>minimo</small> ' + fmt(m.min) : '') + (m.min != null && m.target != null ? '<i></i>' : '') + (m.target != null ? '<small>target</small> ' + fmt(m.target) : '') + (m.min == null && m.target == null ? esc(m.text) : ' <small>kg</small>') + '</b>' + (st ? '<span class="sub">Oggi sei a ' + fmt(a.maxW) + ' kg: ' + st + '.</span>' : '') + '</div>';
 }
 function rpHtml(a, d) {
-  if (a.p.role === 'valvola') return '<div class="rec"><span class="k">Il tuo RP</span><span class="sub">Valvola: il carico qui non è un risultato di forza, quindi nessun record.</span></div>';
-  let h = '';
-  if (a.p.rp) h += '<div class="rec"><span class="k">Il tuo RP, validato dal coach</span><b>' + esc(a.p.rp) + '</b></div>';
-  if (d.pr) h += '<div class="rec"><span class="k">' + (a.p.rp ? 'Massimo a log su Hevy' : 'Il tuo RP a log') + '</span><b class="num">' + fmt(d.pr.w) + ' <small>kg</small> × ' + d.pr.r + '</b><span class="sub">' + dLong(d.pr.at) + (d.est ? '. e1RM stimato ' + fmt(Math.round(d.est.v * 2) / 2) + ' kg (da ' + fmt(d.est.w) + '×' + d.est.r + ')' : '') + '</span></div>';
-  else if (d.reps) h += '<div class="rec"><span class="k">Il tuo RP a log</span><b class="num">' + d.reps.r + ' <small>reps a corpo libero</small></b><span class="sub">' + dLong(d.reps.at) + '</span></div>';
-  return h;
+  const H = recHead('medal', 'Record Personale');
+  if (a.p.role === 'valvola') return '<div class="rec">' + H + '<span class="sub">Valvola: il carico qui non è un risultato di forza, quindi nessun record.</span></div>';
+  const log = d && d.pr ? fmt(d.pr.w) + ' kg × ' + d.pr.r + ', ' + dLong(d.pr.at) : '';
+  if (a.p.rp) return '<div class="rec">' + H + '<b>' + esc(a.p.rp) + '</b><span class="sub">Validato dal coach' + (log ? '. Massimo a log su Hevy: ' + log : '') + '</span></div>';
+  if (d && d.pr) return '<div class="rec">' + H + '<b class="num">' + fmt(d.pr.w) + ' <small>kg</small> × ' + d.pr.r + '</b><span class="sub">' + dLong(d.pr.at) + (d.est ? '. e1RM stimato ' + fmt(Math.round(d.est.v * 2) / 2) + ' kg (da ' + fmt(d.est.w) + '×' + d.est.r + ')' : '') + '</span></div>';
+  if (d && d.reps) return '<div class="rec">' + H + '<b class="num">' + d.reps.r + ' <small>reps a corpo libero</small></b><span class="sub">' + dLong(d.reps.at) + '</span></div>';
+  return '';
 }
 async function loadHist(i) {
   const c = S.cur, e = c.exercises[i], el = $('#hist-' + i); if (!el || el.dataset.ok) return; el.dataset.ok = '1';
-  const a = analyze(e);
+  const a = analyze(e), H = recHead('clock-counter-clockwise', 'Ultime sedute');
   try {
     const d = await getHistory(e), hi = a.p.hi;
-    el.innerHTML = (d.last.length ? d.last.map(s => '<div class="hrow"><span class="d num">' + dShort(s.start) + '</span><span class="s num" style="color:var(--ink)">' + s.sets.map(x => '<span>' + (x.w ? fmt(x.w) + '×' : '') + (x.r ?? '-') + (x.rpe != null ? '<em class="' + (hi != null && x.rpe > hi ? 'over' : '') + '">@' + fmt(x.rpe) + '</em>' : '') + '</span>').join('') + '</span></div>').join('') : '<p style="margin:0">Nessuna seduta a log per questo esercizio.</p>') +
-      '<div class="recs">' + rpHtml(a, d) + mesoHtml(a) + '</div>';
-  } catch (err) { el.innerHTML = '<p style="margin:0">Storico non disponibile: ' + esc(err.message) + '</p><div class="recs">' + mesoHtml(a) + '</div>'; delete el.dataset.ok; }
+    el.innerHTML = '<div class="rec">' + H + (d.last.length ? d.last.map(s => '<div class="hrow"><span class="d num">' + dShort(s.start) + '</span><span class="s num">' + s.sets.map(x => '<span>' + (x.w ? fmt(x.w) + '×' : '') + (x.r ?? '-') + (x.rpe != null ? '<em class="' + (hi != null && x.rpe > hi ? 'over' : '') + '">@' + fmt(x.rpe) + '</em>' : '') + '</span>').join('') + '</span></div>').join('') : '<span class="sub">Nessuna seduta a log per questo esercizio.</span>') + '</div>' + rpHtml(a, d) + mesoHtml(a);
+  } catch (err) { el.innerHTML = '<div class="rec">' + H + '<span class="sub">Storico non disponibile: ' + esc(err.message) + '</span></div>' + (a.p.rp || a.p.role === 'valvola' ? rpHtml(a, null) : '') + mesoHtml(a); delete el.dataset.ok; }
 }
 function goPage(i) { const pager = $('#pager'); if (!pager) return; i = Math.max(0, Math.min(S.cur.exercises.length - 1, i)); pager.scrollTo({ left: i * pager.clientWidth, behavior: 'smooth' }); }
 function repaintMy(i) { const el = $('#my-' + i); if (!el) return; el.innerHTML = vMy(S.cur.exercises[i], i); autosize(el); paintNav(); }
@@ -973,7 +982,7 @@ function closeSheet() { $('#sheet').classList.remove('on'); $('#scrim').classLis
 
 function vClose() {
   const c = S.cur, g = c.general, valves = c.exercises.filter(e => analyze(e).p.role === 'valvola'), nn = c.exercises.filter(hasNote).length;
-  let h = '<div class="view enter"><div class="topbar"><button class="iconbtn" data-act="resume" aria-label="Torna alla seduta">' + ic('caret-left') + '</button><h2>Chiusura</h2></div>';
+  let h = '<div class="view enter"><div class="topbar"><button class="iconbtn" data-act="resume" aria-label="Torna alla seduta">' + ic('caret-left') + '</button><h2>Chiusura</h2>' + gorilla('tbg') + '</div>';
   h += '<div class="fset"><h3>' + esc(monogram(c.title).n) + '</h3><p>' + dLong(c.startedAt) + ', ' + nn + (nn === 1 ? ' esercizio annotato' : ' esercizi annotati') + ' su ' + c.exercises.length + '</p><div id="anchor" class="status" style="margin-top:-4px"></div></div>';
   c.exercises.forEach((e, i) => { if (analyze(e).p.role !== 'valvola') return; h += '<div class="ask" style="' + rs('valvola') + '"><b>' + esc(e.title) + '</b><p>' + (e.my.pain == null ? 'Manca il dolore durante. Sulle valvole si segna sempre, anche se è zero.' : 'Dolore durante') + '</p>' + dotsHtml('cpain', e.my.pain, 'data-i="' + i + '"') + '</div>'; });
   h += '<div class="fset"><span class="lbl">Palestra</span><div class="seg">' + GYMS.map(x => '<button class="' + (c.gym === x ? 'on' : '') + '" data-act="gym" data-v="' + x + '">' + x + '</button>').join('') + '</div></div>' +
@@ -985,7 +994,7 @@ function vClose() {
   return h + '<button class="btn" data-act="doarchive">Archivia e chiudi</button></div>';
 }
 function vArchive() {
-  let h = '<div class="view enter"><div class="topbar"><button class="iconbtn" data-act="home" aria-label="Indietro">' + ic('caret-left') + '</button><h2>Archivio</h2></div>';
+  let h = '<div class="view enter"><div class="topbar"><button class="iconbtn" data-act="home" aria-label="Indietro">' + ic('caret-left') + '</button><h2>Archivio</h2>' + (S.archive.length ? gorilla('tbg') : '') + '</div>';
   if (!S.archive.length) h += '<div class="empty big">' + gorilla() + '<p>Qui finiscono le sedute chiuse, con i tuoi appunti. Puoi riaprirle e ricondividerle quando vuoi.</p></div>';
   S.archive.forEach(c => { const nn = c.exercises.filter(hasNote).length; h += '<button class="arow" data-act="openarch" data-id="' + c.id + '"><b>' + esc(monogram(c.title).n) + '</b><span>' + dLong(c.startedAt) + ', ' + esc(c.gym) + ', ' + nn + (nn === 1 ? ' annotato' : ' annotati') + '</span></button>'; });
   return h + '</div>';
@@ -993,7 +1002,7 @@ function vArchive() {
 function vArchItem() {
   const c = S.archive.find(x => x.id === S.archId); if (!c) return vArchive();
   const valves = c.exercises.map((e, i) => ({ e, i })).filter(x => analyze(x.e).p.role === 'valvola');
-  let h = '<div class="view enter"><div class="topbar"><button class="iconbtn" data-act="archive" aria-label="Indietro">' + ic('caret-left') + '</button><h2>' + esc(monogram(c.title).n) + '</h2></div>';
+  let h = '<div class="view enter"><div class="topbar"><button class="iconbtn" data-act="archive" aria-label="Indietro">' + ic('caret-left') + '</button><h2>' + esc(monogram(c.title).n) + '</h2>' + gorilla('tbg') + '</div>';
   valves.forEach(v => { h += '<div class="ask" style="' + rs('valvola') + '"><b>' + esc(v.e.title) + '</b><p>Dolore a 2 ore</p>' + dotsHtml('apain2h', v.e.my.pain2h, 'data-i="' + v.i + '"') + '</div>'; });
   h += '<pre class="exp">' + esc(buildExport(c)) + '</pre><div style="height:16px"></div><button class="btn acc" data-act="ashare">' + ic('export') + 'Condividi di nuovo</button><div style="height:10px"></div><div class="row"><button class="btn soft" data-act="acopy">' + ic('copy') + 'Copia testo</button><button class="btn soft" data-act="adel" id="adel">Elimina</button></div></div>';
   return h;
@@ -1006,7 +1015,7 @@ function vSettings() {
     '<span class="lbl">Tema</span><div class="seg">' + [['auto', 'Automatico'], ['light', 'Chiaro'], ['dark', 'Scuro']].map(x => '<button class="' + (th === x[0] ? 'on' : '') + '" data-act="theme" data-v="' + x[0] + '">' + x[1] + '</button>').join('') + '</div></div>' +
     '<div class="fset"><h3>Palestra</h3><span class="lbl">Predefinita per le nuove sedute</span><div class="seg">' + GYMS.map(x => '<button class="' + (gym === x ? 'on' : '') + '" data-act="defgym" data-v="' + x + '">' + x + '</button>').join('') + '</div></div>' +
     '<div class="fset"><h3>Dati</h3><p>Split e storico sono copie locali per lavorare anche senza rete. Gli appunti archiviati non vengono toccati.</p><button class="btn soft" data-act="clearcache">Svuota le copie locali di Hevy</button></div>' +
-    '<p class="foot">Spotter ' + VERSION + '</p></div>';
+    '<div class="about">' + gorilla() + '<b>' + MOTTO + '</b><span>Spotter ' + VERSION + '</span></div></div>';
 }
 
 /* ---------- events ---------- */
@@ -1029,7 +1038,8 @@ document.addEventListener('click', async ev => {
     case 'toclose': S.anchor = null; go('close'); break;
     case 'scope': S.scope[i] = b.dataset.s; repaintMy(i); break;
     case 'chip': { const e = c.exercises[i], sc = (S.scope[i] && S.scope[i] !== 'all') ? S.scope[i] : 's0', arr = e.my.chips[sc] || (e.my.chips[sc] = []), k = arr.indexOf(b.dataset.c); k >= 0 ? arr.splice(k, 1) : arr.push(b.dataset.c); saveCur(); repaintMy(i); break; }
-    case 'painclear': c.exercises[i].my.pain = null; saveCur(); repaintMy(i); break;
+    case 'painclear': c.exercises[i].my.pain = null; c.exercises[i].my.sites = []; saveCur(); repaintMy(i); break;
+    case 'site': { const e = c.exercises[i], arr = e.my.sites || (e.my.sites = []), k = arr.indexOf(b.dataset.c); k >= 0 ? arr.splice(k, 1) : arr.push(b.dataset.c); saveCur(); repaintMy(i); break; }
     case 'pain': { const e = c.exercises[i], n = +b.dataset.n; e.my.pain = e.my.pain === n ? null : n; saveCur(); repaintMy(i); break; }
     case 'cpain': { const e = c.exercises[i], n = +b.dataset.n; e.my.pain = e.my.pain === n ? null : n; saveCur(); const st = $('.view').scrollTop; render(); $('.view').scrollTop = st; break; }
     case 'morenote': S.openNote[i] = !S.openNote[i]; $('#nf-' + i).classList.toggle('clamp', !S.openNote[i]); b.textContent = S.openNote[i] ? 'Riduci' : 'Leggi tutto'; break;
