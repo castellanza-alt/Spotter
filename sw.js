@@ -1,8 +1,8 @@
-/* Brorilla — service worker (6.0).
+/* Brorilla — service worker (6.0.1).
    Pagina: rete e copia locale in gara, vince chi arriva prima entro 2,5 s (con poco segnale l'app parte dalla copia).
    Illustrazioni e icona: prima la copia locale, poi si aggiornano in background.
    Pulizia: tocca solo le cache di Brorilla (lo stesso dominio ospita Eisenlink e StepTeller). */
-const CACHE = 'brorilla-v6.0';
+const CACHE = 'brorilla-v6.0.1';
 const SHELL = ['./', './index.html', './icon.png', './esercizi.js'];
 const WAIT = 2500;
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => Promise.all(SHELL.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting())); });
